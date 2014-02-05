@@ -33,23 +33,27 @@
 	<div id="main-container">
 		<div id="main" class="wrapper clearfix">
 			<div class="signup">
-				<form action="/createUser" th:object="${owner}" th:action="@{/createUser}"
+				<form  th:action="@{/createUser}"
 					method="post" class="well">
 					<fieldset>
-						<label th:text="#{label.owner.email}">e-mail :</label>
-							<input id="j_email" name="j_email"
+						<label>user id :</label>
+							<input id="user_id" name="uid"
 								type="text" required="required" autofocus="autofocus"
-								class="input span3" placeholder="Your email..." th:field="*{email}"/>
-						<label th:text="#{label.owner.name}">Name :</label>
-							<input id="j_username" name="j_username" type="text"
+								class="input span3" placeholder="Your id..." />
+						<label>e-mail :</label>
+							<input id="email" name="email"
+								type="text" required="required" autofocus="autofocus"
+								class="input span3" placeholder="Your email..." />
+						<label>Name :</label>
+							<input id="name" name="name" type="text"
 								required="required" class="input span3"
-								placeholder="Your name..." th:field="*{name}"/>
-						<label th:text="#{label.owner.password}">Password :</label>
-							<input id="j_password" name="j_password" type="password"
+								placeholder="Your name..." />
+						<label>Password :</label>
+							<input id="password" name="password" type="password"
 								required="required" class="input span3"
-								placeholder="Your password..." th:field="*{password}"/>
-						<label th:text="#{label.owner.confirmPassword}">Confirm password :</label>
-							<input id="j_confirm_password" name="j_confirm_password" 
+								placeholder="Your password..." />
+						<label>Confirm password :</label>
+							<input id="confirm_password" name="confirm_password"
 								type="password"
 								required="required" class="input span3"
 								placeholder="Your password again..." />
