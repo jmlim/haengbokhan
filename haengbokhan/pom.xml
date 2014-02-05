@@ -6,7 +6,7 @@
 	<packaging>war</packaging>
 	<version>0.3.1</version>
 	<name>haengbokhan church Project</name>
-<!-- 	<url>http://dev.eyeq.co.kr/esp/</url> -->
+	<!-- <url>http://dev.eyeq.co.kr/esp/</url> -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>3.2.1.RELEASE</spring.version>
@@ -25,6 +25,7 @@
 		<cglib.version>2.2.2</cglib.version>
 		<hsqldb.version>2.2.9</hsqldb.version>
 		<ojdbc.version>10.2.0.4.0</ojdbc.version>
+		<derbyclient.version>10.10.1.1</derbyclient.version>
 		<slf4j.version>1.7.2</slf4j.version>
 		<jackson.mapper.version>1.9.11</jackson.mapper.version>
 		<thymeleaf.layout.version>1.0.5</thymeleaf.layout.version>
@@ -198,6 +199,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derbyclient</artifactId>
+			<version>${derbyclient.version}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>${jackson.mapper.version}</version>
@@ -287,8 +294,6 @@ version
 0.3.0 : 게시판 기능 추가.
 
 0.3.1 : 다음 지도를 이용한 스터디 장소 등록 기능 추가.</description>
-	<!-- <organization>
-		<name>Hana Lee</name>
-		<url>http://dev.eyeq.co.kr/wp/hana</url>
-	</organization> -->
+	<!-- <organization> <name>Hana Lee</name> <url>http://dev.eyeq.co.kr/wp/hana</url> 
+		</organization> -->
 </project>

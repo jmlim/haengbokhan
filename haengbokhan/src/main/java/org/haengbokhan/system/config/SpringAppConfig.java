@@ -39,27 +39,36 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 @ImportResource(value = { "classpath*:haengbokhan-security-context.xml" })
 public class SpringAppConfig {
 
+	/*
+	 * @Bean(name = "dataSource", destroyMethod = "close") public DataSource
+	 * dataSource() { BasicDataSource dataSource = new BasicDataSource();
+	 * dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
+	 * dataSource.setUrl("jdbc:oracle:thin:@192.168.100.3:1521:orcl");
+	 * dataSource.setUsername("esp"); dataSource.setPassword("ESP");
+	 * dataSource.setValidationQuery("SELECT 1 FROM DUAL"); return dataSource; }
+	 */
+
 	@Bean(name = "dataSource", destroyMethod = "close")
 	public DataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
-		dataSource.setUrl("jdbc:oracle:thin:@192.168.100.3:1521:orcl");
-		dataSource.setUsername("esp");
-		dataSource.setPassword("ESP");
-		dataSource.setValidationQuery("SELECT 1 FROM DUAL");
+		dataSource.setDriverClassName("org.apache.derby.jdbc.ClientDriver");
+		dataSource
+				.setUrl("jdbc:derby://localhost:1527/Haengbokhan;create=true");
+		dataSource.setUsername("user");
+		dataSource.setPassword("jmlim123");
+		/*dataSource.setValidationQuery("SELECT 1");*/
 		return dataSource;
 	}
 
-	/*@Bean(name = "dataSource_mysql", destroyMethod = "close")
-	public DataSource dataSource() {
-		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost/test");
-		dataSource.setUsername("root");
-		dataSource.setPassword("eyeq");
-		return dataSource;
-	}
-*/
+	/*
+	 * @Bean(name = "dataSource_mysql", destroyMethod = "close") public
+	 * DataSource dataSource() { BasicDataSource dataSource = new
+	 * BasicDataSource();
+	 * dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+	 * dataSource.setUrl("jdbc:mysql://localhost/test");
+	 * dataSource.setUsername("root"); dataSource.setPassword("eyeq"); return
+	 * dataSource; }
+	 */
 	@Bean
 	public FactoryBean<EntityManagerFactory> entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean connectionFactoryBean = new LocalContainerEntityManagerFactoryBean();
@@ -74,9 +83,16 @@ public class SpringAppConfig {
 		HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
 
 		jpaVendorAdapter
-				.setDatabasePlatform("org.hibernate.dialect.Oracle10gDialect");
+				.setDatabasePlatform("org.hibernate.dialect.DerbyDialect");
 
-		jpaVendorAdapter.setDatabase(Database.ORACLE);
+		jpaVendorAdapter.setDatabase(Database.DERBY);
+
+		/*
+		 * jpaVendorAdapter
+		 * .setDatabasePlatform("org.hibernate.dialect.Oracle10gDialect");
+		 * 
+		 * jpaVendorAdapter.setDatabase(Database.ORACLE);
+		 */
 		/*
 		 * jpaVendorAdapter
 		 * .setDatabasePlatform("org.hibernate.dialect.MySQL5Dialect");
