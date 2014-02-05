@@ -1,0 +1,37 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="pages/commons/layout">
+<!--<![endif]-->
+<head>
+
+<link rel="stylesheet" type="text/css" href="../static/styles/login.css"
+	th:href="@{/static/styles/login.css}" />
+</head>
+<body>
+	<section id="login-section" layout:fragment="main-content">
+		<article>
+			<div class="signup">
+				<form action="/j_spring_security_check" th:action="@{/j_spring_security_check}"
+					method="post" class="well" th:object="${user}">
+					<fieldset>
+						<label th:text="#{label.login.id}">ID</label>
+							<input id="j_username" name="j_username"
+								type="text" required="required" autofocus="autofocus"
+								class="input span3" placeholder="Your login..." />
+						<label th:text="#{label.login.password}">Password</label>
+							<input id="j_password" name="j_password" type="password"
+								required="required" class="input span3"
+								placeholder="Your password..." />
+					</fieldset>
+					<input type="submit" class="btn" value="Authenticate" th:value="#{label.login.authentication}" />
+				</form>
+			</div>
+		</article>
+	</section>
+</body>
+</html>
