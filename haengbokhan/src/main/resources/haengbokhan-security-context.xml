@@ -27,14 +27,14 @@
 	<security:authentication-manager alias="authenticationManager">
 		<security:authentication-provider
 			user-service-ref="userDetailsService">
-			<security:password-encoder ref="passwordEncoder">
-				<security:salt-source ref="saltSource" />
-			</security:password-encoder>
+			<!-- <security:password-encoder ref="passwordEncoder"> -->
+	<!-- 			<security:salt-source ref="saltSource" /> -->
+<!-- 			</security:password-encoder> -->
 		</security:authentication-provider>
 	</security:authentication-manager>
 
-	<beans:bean id="passwordEncoder"
-		class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
+	<!-- <beans:bean id="passwordEncoder"
+		class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" /> -->
 
 	<beans:bean id="saltSource"
 		class="org.springframework.security.authentication.dao.ReflectionSaltSource">

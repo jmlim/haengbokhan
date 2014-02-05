@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  * @by $LastChangedBy: voyaging $
  */
 @Controller
-@SessionAttributes(value = { "user" }, types = { User.class })
+//@SessionAttributes(value = { "user" }, types = { User.class })
 public class LoginController {
 
 	private Log log = LogFactory.getLog(getClass());
