@@ -52,11 +52,11 @@
 				<h1 id="title"><a href="main.html" th:href="@{/}" th:text="#{title.haengbokhan}">h1#title</a></h1>
 				<nav>
 					<ul>
-						<li th:if="${session.user != null and session.user.uid != null and #lists.contains(#strings.listSplit(session.user.role, ','), 'ROLE_ADMIN')}">
+						<!-- <li th:if="${session.user != null and session.user.uid != null and #lists.contains(#strings.listSplit(session.user.role, ','), 'ROLE_ADMIN')}">
 							<a href="pages/admin.html" th:href="@{/admin}" 
 								th:text="#{label.menu.head.admin}">관리</a>
-						</li>
-						<li th:if="${session.user == null}">
+						</li> -->
+						<!-- <li th:if="${session.user == null}">
 							<a href="pages/login.html" th:href="@{/login}" 
 								th:text="#{label.menu.head.login}">로그인</a>
 						</li>
@@ -71,7 +71,7 @@
 						<li>
 							<a href="pages/schedule.html" th:href="@{/schedule}" 
 								th:text="#{label.menu.head.schedule}">일정</a>
-						</li>
+						</li> -->
 						<!-- 구현전까지 주석처리
 						<li>
 							<a href="pages/statistics.html" th:href="@{/statistics}" 
@@ -84,7 +84,7 @@
 		</div>
 		<div id="main-container">
 			<div id="main" class="wrapper clearfix"> 
-				<aside id="user-panel" th:if="${session.user != null}" layout:fragment="user-panel-content">
+				<!-- <aside id="user-panel" th:if="${session.user != null}" layout:fragment="user-panel-content">
 					<h3 th:text="${session.user.name}">이름</h3>
 					<h3 th:text="${session.user.email}">이메일</h3>
 					<h3><a href="#" th:href="@{/user-article/list}">게시글(<span th:text="${#lists.size(session.user.articles)}">0</span>)</a></h3>
@@ -95,7 +95,7 @@
 					<h3>이메일</h3>
 					<h3><a href="#">게시글(<span>0</span>)</a></h3>
 					<h3><a href="#">벌점(<span>0</span>)</a></h3>
-				</aside>
+				</aside> -->
 				<section layout:fragment="main-content"> 
 					<!-- 메인 컨텐츠 영역 시작 -->
 					<article>
