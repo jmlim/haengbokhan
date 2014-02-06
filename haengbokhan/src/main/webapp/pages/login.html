@@ -9,26 +9,28 @@
 <!--<![endif]-->
 <head>
 
-<link rel="stylesheet" type="text/css" href="../static/styles/login.css"
-	th:href="@{/static/styles/login.css}" />
 </head>
 <body>
 	<section id="login-section" layout:fragment="main-content">
 		<article>
-			<div class="signup">
-				<form action="/j_spring_security_check" th:action="@{/j_spring_security_check}"
-					method="post" class="well" th:object="${user}">
-					<fieldset>
-						<label th:text="#{label.login.id}">ID</label>
-							<input id="j_username" name="j_username"
-								type="text" required="required" autofocus="autofocus"
-								class="input span3" placeholder="Your login..." />
-						<label th:text="#{label.login.password}">Password</label>
-							<input id="j_password" name="j_password" type="password"
-								required="required" class="input span3"
-								placeholder="Your password..." />
-					</fieldset>
-					<input type="submit" class="btn" value="Authenticate" th:value="#{label.login.authentication}" />
+			<div class="signin">
+				<form action="/j_spring_security_check"
+					th:action="@{/j_spring_security_check}" method="post"
+					class="form-signin" role="form" th:object="${user}">
+					<h2 class="form-signin-heading">Please sign in</h2>
+
+					<input id="j_username" name="j_username" class="form-control"
+						placeholder="Your login id..." required="required"
+						autofocus="autofocus" type="text" /> 
+					
+					<input id="j_password"
+						name="j_password" type="password" class="form-control"
+						placeholder="Your password..." required="required" /> 
+					<label class="checkbox"> 
+						<input value="remember-me" type="checkbox"> Remember me</input>
+					</label>
+					<button class="btn btn-lg btn-primary btn-block" type="submit"
+						value="Authenticate" th:value="#{label.login.authentication}">Sign in</button>
 				</form>
 			</div>
 		</article>

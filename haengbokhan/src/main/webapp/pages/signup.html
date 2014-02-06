@@ -3,72 +3,46 @@
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html class="no-js" lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="pages/commons/layout">
 <!--<![endif]-->
-<head>
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
-<title th:text="#{title.tab}">haengbokhan</title>
-
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-
-<link rel="stylesheet" href="../static/styles/initializr-style.css"
-	th:href="@{/static/styles/initializr-style.css}" />
-<link rel="stylesheet" href="../static/styles/haengbokhan-main.css"
-	th:href="@{/static/styles/haengbokhan-main.css}" />
-
-<script type="text/javascript"
-	src="./static/scripts/modernizr-latest.js"
-	th:src="@{/static/scripts/modernizr-latest.js}"></script>
-<script type="text/javascript" src="./static/scripts/haengbokhan-main.js"
-	th:src="@{/static/scripts/haengbokhan-main.js}"></script>
-</head>
 <body>
-	<div id="header-container">
-		<header class="wrapper clearfix">
-			<h1 id="title" th:text="#{title.haengbokhan}">h1#title</h1>
-		</header>
-	</div>
-	<div id="main-container">
-		<div id="main" class="wrapper clearfix">
-			<div class="signup">
-				<form  th:action="@{/createUser}"
-					method="post" class="well">
-					<fieldset>
-						<label>user id :</label>
-							<input id="user_id" name="uid"
-								type="text" required="required" autofocus="autofocus"
-								class="input span3" placeholder="Your id..." />
-						<label>e-mail :</label>
-							<input id="email" name="email"
-								type="text" required="required" autofocus="autofocus"
-								class="input span3" placeholder="Your email..." />
-						<label>Name :</label>
-							<input id="name" name="name" type="text"
-								required="required" class="input span3"
-								placeholder="Your name..." />
-						<label>Password :</label>
-							<input id="password" name="password" type="password"
-								required="required" class="input span3"
-								placeholder="Your password..." />
-						<label>Confirm password :</label>
-							<input id="confirm_password" name="confirm_password"
-								type="password"
-								required="required" class="input span3"
-								placeholder="Your password again..." />
-					</fieldset>
-					<input type="submit" class="btn" value="Create" />
-				</form>
-			</div>
+	<section id="signup-section" layout:fragment="main-content">
+		<div class="signup">
+			<form th:action="@{/createUser}" method="post" class="form-signup">
+				<h2 class="form-signup-heading">Please sign up</h2>
+				<div class="signup-padding-bottom">
+					<input id="user_id" name="uid" type="text"
+						required="required" autofocus="autofocus" class="form-control"
+						placeholder="Your id..." /> 
+				</div>
+				<div class="signup-padding-bottom">
+					<input
+						id="email" name="email" type="text" required="required"
+						autofocus="autofocus" class="form-control"
+						placeholder="Your email..." /> 
+				</div>
+				<div class="signup-padding-bottom">
+					<input
+						id="name" name="name" type="text" required="required"
+						class="form-control" placeholder="Your name..." /> 
+				</div>
+				<div class="signup-padding-bottom">
+					<input id="password" name="password" type="password"
+						required="required" class="form-control"
+						placeholder="Your password..." /> 
+				</div>
+				<div class="signup-padding-bottom">
+					<input id="confirm_password" name="confirm_password"
+						type="password" required="required" class="form-control"
+						placeholder="Your password again..." />
+				</div>
+				<button class="btn btn-lg btn-primary btn-block signup-margin-top" type="submit"
+						value="Create" th:value="#{label.login.authentication}">Sign up</button>
+			</form>
 		</div>
-	</div>
+	</section>
 	<!-- #main-container -->
-
-	<div id="footer-container">
-		<footer class="wrapper">
-			<h3>footer</h3>
-		</footer>
-	</div>
 </body>
 </html>

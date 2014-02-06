@@ -1,0 +1,65 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="pages/commons/layout">
+<!--<![endif]-->
+<body>
+	<section id="main-section" layout:fragment="main-content">
+		<div id="main-carousel" class="carousel slide">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#main-carousel" data-slide-to="0" class="active"></li>
+				<li data-target="#main-carousel" data-slide-to="1"></li>
+				<li data-target="#main-carousel" data-slide-to="2"></li>
+			</ol>
+
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner">
+				<div class="item active">
+					<div class="fill"
+						style="background-image: url('http://placehold.it/1900x1080&amp;text=Slide One');"></div>
+					<div class="carousel-caption">
+						<h1>임정묵1</h1>
+					</div>
+				</div>
+				<div class="item">
+					<div class="fill"
+						style="background-image: url('http://placehold.it/1900x1080&amp;text=Slide Two');"></div>
+					<div class="carousel-caption">
+						<h1>임정묵2</h1>
+					</div>
+				</div>
+				<div class="item">
+					<div class="fill"
+						style="background-image: url('http://placehold.it/1900x1080&amp;text=Slide Three');"></div>
+					<div class="carousel-caption">
+						<h1>임정묵3</h1>
+					</div>
+				</div>
+			</div>
+
+			<!-- Controls -->
+			<a class="left carousel-control" href="#main-carousel" data-slide="prev">
+				<span class="icon-prev"></span>
+			</a> <a class="right carousel-control" href="#main-carousel"
+				data-slide="next"> <span class="icon-next"></span>
+			</a>
+		</div>
+		
+		<script type="text/javascript" th:inline="javascript">
+			(function($) {
+				$(document).ready(function() {
+					$('.carousel').carousel({
+						//changes the speed
+						interval : 4000
+					})
+				});
+			})(jQuery);
+		</script>
+	</section>
+</body>
+</html>
