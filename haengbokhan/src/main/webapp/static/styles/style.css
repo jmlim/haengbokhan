@@ -1,7 +1,7 @@
 /*commons */
-.item,.carousel-inner {
-	min-height: 400px;
-	max-height: 800px;
+.carousel-inner .active .fill,.item,.carousel-inner {
+	min-height: 600px;
+	max-height: 900px;
 }
 
 /*header page */
