@@ -18,45 +18,110 @@
 
 <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.css" 
 	th:href="@{/static/bootstrap/css/bootstrap.css}" />
-<link rel="stylesheet" href="../static/bootstrap/css/bootstrap-responsive.css" 
-	th:href="@{/static/bootstrap/css/bootstrap-responsive.css}" />
-	
-<link rel="stylesheet" href="./static/styles/initializr-style.css"
-	th:href="@{/static/styles/initializr-style.css}" />
-	
-<link rel="stylesheet" href="./static/styles/haengbokhan-main.css"
-	th:href="@{/static/styles/haengbokhan-main.css}" />
-	
-<script type="text/javascript"
-	src="./static/scripts/modernizr-latest.js"
-	th:src="@{/static/scripts/modernizr-latest.js}"></script>
-<script type="text/javascript" src="./static/scripts/haengbokhan-main.js"
-	th:src="@{/static/scripts/haengbokhan-main.js}"></script>
+<link rel="stylesheet" href="../static/bootstrap/css/bootstrap-theme.css" 
+	th:href="@{/static/bootstrap/css/bootstrap-theme.css}" />
+<link rel="stylesheet" href="../static/bootstrap/plugins/lightbox/dist/ekko-lightbox.css" 
+	th:href="@{/static/bootstrap/plugins/lightbox/dist/ekko-lightbox.css}" />
+<link rel="stylesheet" href="../static/styles/style.css" 
+	th:href="@{/static/styles/style.css}" />
+
+
+
 
 <script type="text/javascript" src="./ckeditor/ckeditor.js"
 	th:src="@{/ckeditor/ckeditor.js}"></script>
-
 <script type="text/javascript" src="./static/jquery/jquery-1.8.3.js"
 	th:src="@{/static/jquery/jquery-1.8.3.js}"></script>
-<script type="text/javascript" src="./static/jquery/plugins/jquery.cookie.js"
-	th:src="@{/static/jquery/plugins/jquery.cookie.js}"></script>
-<script type="text/javascript" th:inline="javascript">
+<script type="text/javascript" src="./static/jquery/plugins/jquery-placeholder/jquery.placeholder.js"
+	th:src="@{/static/jquery/plugins/jquery-placeholder/jquery.placeholder.js}"></script>
+<script type="text/javascript" src="../static/bootstrap/js/bootstrap.js"
+	th:src="@{/static/bootstrap/js/bootstrap.js}"></script>
+<script type="text/javascript" src="../static/bootstrap/plugins/lightbox/dist/ekko-lightbox.js"
+	th:src="@{/static/bootstrap/plugins/lightbox/dist/ekko-lightbox.js}"></script>
 
+<script type="text/javascript" th:inline="javascript">
+	(function($) {
+		$(document).ready(
+				function() {
+					$("input, textarea").placeholder();
+
+					$(document).delegate('*[data-toggle="lightbox"]', 'click',
+							function(event) {
+								event.preventDefault();
+								$(this).ekkoLightbox();
+							});
+				});
+	})(jQuery);
 </script>
 <!-- layout head 템플릿 내용 끝 -->
 </head>
 <body>
 	<div id="doc">
 		<div id="header-container">
-			<header class="wrapper clearfix">
-				<h1 id="title"><a href="main.html" th:href="@{/}" th:text="#{title.haengbokhan}">h1#title</a></h1>
-				<nav>
+			<header class="wrapper">
+				<!-- <h3 id="title"><a href="main.html" th:href="@{/}" th:text="#{title.haengbokhan}">h1#title</a></h3> -->
+
+				<nav class="navbar navbar-default" role="navigation">
+					<div class="container-fluid">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle"
+								data-toggle="collapse"
+								data-target="#bs-example-navbar-collapse-1">
+								<span class="sr-only">Toggle navigation</span> <span
+									class="icon-bar"></span> <span class="icon-bar"></span> <span
+									class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand title-and-logo" href="#"> </a>
+						</div>
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse"
+							id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav">
+								<li class="active">
+									<a href="#">공지사항</a>
+								</li>
+								<li><a href="#" th:href="@{/gallery/gallery}">사진방</a></li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle"
+										data-toggle="dropdown">임원방 <b class="caret"></b>
+									</a>
+									<ul class="dropdown-menu">
+										<li><a href="#">청년 출석부</a></li>
+										<li><a href="#">임원 공유 게시판</a></li>
+										<li><a href="#">행사 및 봉사</a></li>
+										<li class="divider"></li>
+										<li><a href="#">파일방</a></li>
+									</ul>
+								</li>
+							</ul>
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="#" th:href="@{/login}">로그인</a></li>
+								<li><a href="#" th:href="@{/signup}">등록</a></li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle"
+									data-toggle="dropdown">회원메뉴 <b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li><a href="#">정보변경</a></li>
+										<li><a href="#">개인 페이지</a></li>
+										<li class="divider"></li>
+										<li><a href="#">회원탈퇴</a></li>
+									</ul></li>
+							</ul>
+						</div>
+						<!-- /.navbar-collapse -->
+					</div>
+					<!-- /.container-fluid -->
+				</nav>
+
+
+				<!-- <nav>
 					<ul>
-						<!-- <li th:if="${session.user != null and session.user.uid != null and #lists.contains(#strings.listSplit(session.user.role, ','), 'ROLE_ADMIN')}">
+						<li th:if="${session.user != null and session.user.uid != null and #lists.contains(#strings.listSplit(session.user.role, ','), 'ROLE_ADMIN')}">
 							<a href="pages/admin.html" th:href="@{/admin}" 
 								th:text="#{label.menu.head.admin}">관리</a>
-						</li> -->
-						<!-- <li th:if="${session.user == null}">
+						</li>
+						<li th:if="${session.user == null}">
 							<a href="pages/login.html" th:href="@{/login}" 
 								th:text="#{label.menu.head.login}">로그인</a>
 						</li>
@@ -71,15 +136,15 @@
 						<li>
 							<a href="pages/schedule.html" th:href="@{/schedule}" 
 								th:text="#{label.menu.head.schedule}">일정</a>
-						</li> -->
-						<!-- 구현전까지 주석처리
+						</li>
+						구현전까지 주석처리
 						<li>
 							<a href="pages/statistics.html" th:href="@{/statistics}" 
 								th:text="#{label.menu.head.statistics}">통계</a>
 						</li>
-						 -->
+						
 					</ul>
-				</nav>
+				</nav> -->
 			</header>
 		</div>
 		<div id="main-container">
