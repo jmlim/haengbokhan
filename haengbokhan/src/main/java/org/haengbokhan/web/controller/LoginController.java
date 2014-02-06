@@ -24,7 +24,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
  * @author Hana Lee
@@ -34,7 +33,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  * @by $LastChangedBy: voyaging $
  */
 @Controller
-//@SessionAttributes(value = { "user" }, types = { User.class })
+// @SessionAttributes(value = { "user" }, types = { User.class })
 public class LoginController {
 
 	private Log log = LogFactory.getLog(getClass());
@@ -47,18 +46,13 @@ public class LoginController {
 
 	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
 	public String loginPageHandler(Model model) {
-		User user = new User();
-		model.addAttribute(user);
 		return "/pages/login";
 	}
-	
+
 	@RequestMapping(value = { "/signup" }, method = RequestMethod.GET)
 	public String signupPageHandler(Model model) {
-		User user = new User();
-		model.addAttribute(user);
 		return "/pages/signup";
 	}
-	
 
 	@RequestMapping(value = { "/ldap/authentication" })
 	public String ldapLoginHandler(@ModelAttribute("user") User user) {
@@ -128,11 +122,11 @@ public class LoginController {
 
 	@RequestMapping(value = { "/authentication" })
 	public String loginHandler(@ModelAttribute("user") User user) {
-	/*	user.setUid("guest");
-		user.setName("게스트");
-		user.setEmail("voyaging@eyeq.co.kr");
-		user.setRole("ROLE_ADMIN,ROLE_USER");
-		ownerManager.createUser(user);*/
+		/*
+		 * user.setUid("guest"); user.setName("게스트");
+		 * user.setEmail("voyaging@eyeq.co.kr");
+		 * user.setRole("ROLE_ADMIN,ROLE_USER"); ownerManager.createUser(user);
+		 */
 		System.out.println(user);
 		return "redirect:/";
 	}
