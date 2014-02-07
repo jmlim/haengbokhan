@@ -14,7 +14,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-
 /**
  * @author Hana Lee
  * @since 0.0.2 2013. 1. 21. 오전 7:16:54
@@ -41,7 +40,6 @@ public class UserManagerTest {
 		user.setName("이하나");
 		user.setPassword("dlgksk");
 		user.setEmail("voyaging@naver.com");
-		user.setEnabled(true);
 
 		userManager.createUser(user);
 
