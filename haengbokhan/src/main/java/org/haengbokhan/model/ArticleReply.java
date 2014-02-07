@@ -11,11 +11,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
- * @author jmlim
- * @since 0.0.2 2013. 2. 4. 오후 12:11:27
- * @revision $LastChangedRevision: 6115 $
- * @date $LastChangedDate: 2013-02-25 12:18:46 +0900 (월, 25 2월 2013) $
- * @by $LastChangedBy: jmlim $
+ * @author Administrator
+ *
  */
 @Entity
 @Table(name = "ARTICLE_REPLIES")
