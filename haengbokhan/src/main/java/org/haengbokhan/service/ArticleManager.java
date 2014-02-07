@@ -23,9 +23,9 @@ public interface ArticleManager {
 
 	public void createArticle(Article article);
 
-	public List<Article> getArticles();
+	public List<Article> getAllArticles();
 
-	public List<Article> getEnabledArticles(Integer studyRoomId);
+	public List<Article> getArticles(String groupId);
 
 	ArticleReply getArticleReply(Integer articleReplyId);
 
@@ -35,5 +35,5 @@ public interface ArticleManager {
 
 	void deleteArticleReply(ArticleReply reply);
 
-	List<ArticleReply> getEnabledArticleReplies(Integer articleId);
+	List<ArticleReply> getArticleReplies(Integer articleId);
 }

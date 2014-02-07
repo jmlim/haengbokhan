@@ -4,6 +4,10 @@
 	max-height: 900px;
 }
 
+#main-container #main {
+	margin-top: 50px;
+}
+
 /*header page */
 .title-and-logo {
 	background-image: url(../images/happy-logo.png);

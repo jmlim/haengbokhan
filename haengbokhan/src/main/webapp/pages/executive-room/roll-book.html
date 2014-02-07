@@ -1,0 +1,39 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="pages/commons/layout">
+<!--<![endif]-->
+<body>
+	<section id="roll-book-section" layout:fragment="main-content">
+		<div class="roll-book">
+			<iframe src="https://docs.google.com/spreadsheet/pub?key=0AqvSfx4NzB8CdHppTDZ1ck5hZlRWRHI2VG1NcEl3aVE" class="roll-book-iframe"
+				width="960" height="749"></iframe>
+		</div>
+
+		<script type="text/javascript">
+			(function($) {
+				$(document).ready(function() {
+					var rollBookIFrame = $(".roll-book-iframe");
+					$(window).resize(function() {
+						rollBookResize();
+					});
+
+					function rollBookResize() {
+						var windowWidth = $(window).width();
+						var windowHeight = $(window).height();
+						rollBookIFrame.width(windowWidth - 7);
+						rollBookIFrame.height(windowHeight - 70);
+					}
+
+					rollBookResize();
+				});
+			})(jQuery);
+		</script>
+	</section>
+	<!-- #main-container -->
+</body>
+</html>

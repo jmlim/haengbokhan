@@ -82,9 +82,7 @@ public class UserManagerImpl extends AbstractJpaDaoService implements
 	 * @see org.haengbokhan.service.UserManager#deleteUser(org.haengbokhan.model.User)
 	 */
 	public void deleteUser(User user) {
-		user.setDeletedDate(new Date());
-		user.setEnabled(false);
-		getEntityManager().merge(user);
+		getEntityManager().remove(user);
 	}
 
 	/**

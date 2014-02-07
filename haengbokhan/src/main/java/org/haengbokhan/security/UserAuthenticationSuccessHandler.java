@@ -23,7 +23,7 @@ public class UserAuthenticationSuccessHandler extends
 			throws IOException, ServletException {
 		HttpSession session = request.getSession();
 		UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
-		session.setAttribute("blogUser", principal.getUser());
+		session.setAttribute("user", principal.getUser());
 		super.onAuthenticationSuccess(request, response, authentication);
 
 	}

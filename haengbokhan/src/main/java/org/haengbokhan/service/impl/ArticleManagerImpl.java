@@ -10,7 +10,6 @@ import org.haengbokhan.service.ArticleManager;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 /**
  * @author Hana Lee
  * @since 0.0.2 2013. 1. 21. 오전 7:15:55
@@ -35,9 +34,7 @@ public class ArticleManagerImpl extends AbstractJpaDaoService implements
 	 * @see org.haengbokhan.service.ArticleManager#deleteArticle(org.haengbokhan.model.Article)
 	 */
 	public void deleteArticle(Article article) {
-		article.setDeletedDate(new Date());
-		article.setEnabled(false);
-		getEntityManager().merge(article);
+		getEntityManager().remove(article);
 	}
 
 	/**
@@ -60,11 +57,12 @@ public class ArticleManagerImpl extends AbstractJpaDaoService implements
 	 * @see org.haengbokhan.service.ArticleManager#getArticles()
 	 */
 	@Transactional(readOnly = true)
-	public List<Article> getArticles() {
+	public List<Article> getAllArticles() {
 
-		List<Article> results = getEntityManager().createNamedQuery(
-				"org.haengbokhan.model.Article@getArticles()", Article.class)
-				.getResultList();
+		List<Article> results = getEntityManager()
+				.createNamedQuery(
+						"org.haengbokhan.model.Article@getAllArticles()",
+						Article.class).getResultList();
 
 		if (results != null && results.size() > 0) {
 			return results;
@@ -74,15 +72,15 @@ public class ArticleManagerImpl extends AbstractJpaDaoService implements
 	}
 
 	/**
-	 * @see org.haengbokhan.service.ArticleManager#getEnabledArticles(java.lang.Integer)
+	 * @see org.haengbokhan.service.ArticleManager#getArticles(java.lang.String)
 	 */
 	@Transactional(readOnly = true)
-	public List<Article> getEnabledArticles(Integer studyRoomId) {
+	public List<Article> getArticles(String groupId) {
 		// TODO Auto-generated method stub
 		List<Article> results = getEntityManager()
 				.createNamedQuery(
-						"org.haengbokhan.model.Article@getEnabledArticles(studyRooomId)",
-						Article.class).setParameter("studyRoomId", studyRoomId)
+						"org.haengbokhan.model.Article@getArticles(groupId)",
+						Article.class).setParameter("groupId", groupId)
 				.getResultList();
 		if (results != null && results.size() > 0) {
 			return results;
@@ -95,7 +93,6 @@ public class ArticleManagerImpl extends AbstractJpaDaoService implements
 	 * @see org.haengbokhan.service.ArticleManager#getArticleReply(java.lang.Integer)
 	 */
 	public ArticleReply getArticleReply(Integer articleReplyId) {
-		// TODO Auto-generated method stub
 		return getEntityManager().find(ArticleReply.class, articleReplyId);
 	}
 
@@ -119,16 +116,14 @@ public class ArticleManagerImpl extends AbstractJpaDaoService implements
 	 * @see org.haengbokhan.service.ArticleManager#deleteArticleReply(org.haengbokhan.model.ArticleReply)
 	 */
 	public void deleteArticleReply(ArticleReply reply) {
-		reply.setDeletedDate(new Date());
-		reply.setEnabled(false);
-		getEntityManager().merge(reply);
+		getEntityManager().remove(reply);
 	}
 
 	/**
 	 * @see org.haengbokhan.service.ArticleManager#getEnabledArticleReplies(java.lang.Integer)
 	 */
 	@Transactional(readOnly = true)
-	public List<ArticleReply> getEnabledArticleReplies(Integer articleId) {
+	public List<ArticleReply> getArticleReplies(Integer articleId) {
 		// TODO Auto-generated method stub
 		List<ArticleReply> results = getEntityManager()
 				.createNamedQuery(
