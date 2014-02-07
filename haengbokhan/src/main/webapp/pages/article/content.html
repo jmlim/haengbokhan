@@ -28,94 +28,86 @@ th:href="@{/static/styles/article.css}" />
 </head>
 <body>
 	<section layout:fragment="main-content">
-		<div id="article">
-			<table class="table table-condensed table-bordered">
-				<thead>
-					<tr class="article-header">
-						<th class="article-title"><div class="ellipsis"
-								style="width: 400px">
-								<a th:text="${article.title}" th:title="${article.title}">제목</a>
-							</div></th>
-						<th class="article-writer" th:text="${article.owner.uid}">이름</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td colspan="2"><div class="article-body" th:utext="${article} ? ${article.content} : ''">작성된 글이 없습니다.</div></td>
-					</tr>
-					<tr>
-						<td>
-							<a class="replies-open"><span class="icon-hand-down"></span>댓글열기</a>
-							<a class="replies-close"><span class="icon-hand-up"></span>댓글닫기</a>
-						</td>
-						<td>
-							<div class="article-footer">
-								<span th:if="${session.user != null and article.owner.uid == session.user.uid}">
-									<a th:href="@{/article/edit-form(articleId=${article.id},groupId=${article.groupId})}" class="btn btn-info btn-mini">
-										글수정
-									</a>
-									<a th:href="@{/article/delete(articleId=${article.id},groupId=${article.groupId})}" class="btn btn-mini btn-info">
-										글삭제
-									</a>
-								</span>
-								<a th:href="@{/article/list(groupId=${article.groupId})}" class="btn btn-mini btn-info">
-									<span>목록</span>
-								</a>
+		<div class="container">
+	        <div class="row">
+	            <div class="col-lg-12">
+	                <h1 class="page-header">
+	                	<a th:text="${article.title}" th:title="${article.title}">제목</a>
+	                	<small th:text="${article.modifiedDate}">수정일</small>
+	                    <small th:text="${article.owner.uid}">이름</small>
+	                </h1>
+					<div class="article-buttons">
+						<span
+							th:if="${session.user != null and article.owner.uid == session.user.uid}">
+							<a th:href="@{/article/edit-form(articleId=${article.id},groupId=${article.groupId})}"
+							class="btn btn-info btn-mini"> 글수정 </a> 
+							<a th:href="@{/article/delete(articleId=${article.id},groupId=${article.groupId})}"
+							class="btn btn-mini btn-info"> 글삭제 </a>
+						</span> <a th:href="@{/article/list(groupId=${article.groupId})}"
+							class="btn btn-mini btn-info"> <span>목록</span>
+						</a>
+					</div>
+					<ol class="breadcrumb">
+	                    <li><a href="#" th:text="${groupId}">Home</a>
+	                    </li>
+	                    <li class="active" th:text="${article.title}">Blog Post</li>
+	                </ol>
+	            </div>
+	        </div>
+	
+	        <div class="row">
+	            <div class="col-lg-12">
+	                <div class="article-body" th:utext="${article} ? ${article.content} : ''">작성된 글이 없습니다.</div>
+
+
+					<!--  -->
+	                 <!-- the comment box -->
+	                <div class="well">
+	                    <h4>Leave a Comment:</h4>
+	                    <form method="post" th:action="@{/article-reply/edit-form-submit}" th:object="${articleReply}" style="margin: 0">
+							<div class="reply-write" th:if="${session.user != null}">
+								<p class="clear">
+									<textarea id="article-reply-content" th:field="*{content}" rows="3"></textarea>
+									<script type="text/javascript">
+										//<![CDATA[
+										 CKEDITOR.replace( 'article-reply-content',{
+											 height: "60px",
+											 toolbar:
+													[
+														[]
+													]
+											 } );
+										//]]>
+									</script>
+								</p>
+								<div th:if="${#fields.hasErrors('content')}"
+									class="text-error" th:errors="*{content}">content error</div>
+								<p>
+									<input type="hidden" name="articleId" th:value="${article.id}" />
+									<input type="hidden" name="groupId" th:value="${article.groupId}"/>
+									<input type="submit" value="댓글 달기" class="btn btn-mini btn-primary" />
+								</p>
 							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+						</form>
+	                </div>
 
-			<div class="article-reply">
-				<!-- commentList close -->
-				<form method="post" th:action="@{/article-reply/edit-form-submit}" th:object="${articleReply}" style="margin: 0">
-					<div class="reply-write" th:if="${session.user != null}">
-						<p class="clear">
-							<textarea id="article-reply-content" th:field="*{content}" rows="3"></textarea>
-							<script type="text/javascript">
-								//<![CDATA[
-								 CKEDITOR.replace( 'article-reply-content',{
-									 height: "60px",
-									 toolbar:
-											[
-												[]
-											]
-									 } );
-								//]]>
-							</script>
-						</p>
-						<div th:if="${#fields.hasErrors('content')}"
-							class="text-error" th:errors="*{content}">content error</div>
-						<p>
-							<input type="hidden" name="articleId" th:value="${article.id}" />
-							<input type="hidden" name="groupId" th:value="${article.groupId}"/>
-							<input type="submit" value="댓글 달기" class="btn btn-mini btn-primary" />
-						</p>
-					</div><!-- commentWrite close -->
-				</form>
-
-				<ul class="reple_list">
-					<li th:each="reply : ${articleReplies}">
-						<div class="user_info">
-							<a th:text="${reply.owner.uid}">임정묵</a>
-								<span th:text="${reply.createdDate}">12.06 13:20</span> 
+					<div th:each="reply : ${articleReplies}">
+						<h3>
+							<span th:text="${reply.owner.uid}">Start Bootstrap</span> 
+							<small th:text="${reply.createdDate}">9:41 PM on August 24, 2013</small>
 							<a
 								th:if="${session.user != null and reply.owner.uid == session.user.uid}"
 								th:href="@{/article-reply/delete(articleId=${article.id},articleReplyId=${reply.id},groupId=${article.groupId})}"
 								class="icon-remove" title="삭제"></a>
-						</div>
-						<div class="arrow_parent">
-							<div th:utext="${reply.content}" class="reply_content">
-							내용
-							</div>
-							<span class="arrow_l"></span>
-						</div>
-					</li>
-				</ul>
-				
-			</div>
-		</div>
+						</h3>
+						<p th:utext="${reply.content}" class="reply_content">This has to be the worst blog post I have ever read. It
+							simply makes no sense. You start off by talking about space or
+							something, then you randomly start babbling about cupcakes, and
+							you end off with random fish names.</p>
+					</div>
+				</div>
+	        </div>
+	    </div>
 	</section>
 </body>
 </html>
