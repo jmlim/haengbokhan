@@ -25,8 +25,8 @@ import javax.persistence.Table;
 @Table(name = "ARTICLES")
 @NamedQueries({
 		@NamedQuery(name = "org.haengbokhan.model.Article@getArticle(articleId)", query = "from Article as article where ID = :articleId"),
-		@NamedQuery(name = "org.haengbokhan.model.Article@getEnabledArticles(studyRooomId)", query = "from Article as article where STUDYROOM_ID = :studyRoomId and ENABLED = 1 order by ID desc"),
-		@NamedQuery(name = "org.haengbokhan.model.Article@getArticles()", query = "from Article as article order by ID desc") })
+		@NamedQuery(name = "org.haengbokhan.model.Article@getArticles(groupId)", query = "from Article as article where GROUP_ID = :groupId order by ID desc"),
+		@NamedQuery(name = "org.haengbokhan.model.Article@getAllArticles()", query = "from Article as article order by ID desc") })
 public class Article extends BaseEntity {
 
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.LAZY)
@@ -40,6 +40,9 @@ public class Article extends BaseEntity {
 
 	@Column(name = "TITLE", nullable = false)
 	private String title;
+
+	@Column(name = "GROUP_ID", nullable = false)
+	private String groupId;
 
 	@OneToMany(targetEntity = ArticleReply.class, mappedBy = "article", cascade = {
 			CascadeType.MERGE, CascadeType.REMOVE })
@@ -107,4 +110,20 @@ public class Article extends BaseEntity {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+	/**
+	 * @return the groupId
+	 */
+	public String getGroupId() {
+		return groupId;
+	}
+
+	/**
+	 * @param groupId
+	 *            the groupId to set
+	 */
+	public void setGroupId(String groupId) {
+		this.groupId = groupId;
+	}
+
 }

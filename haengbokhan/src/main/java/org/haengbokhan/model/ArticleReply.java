@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ARTICLE_REPLIES")
 @NamedQueries({
-		@NamedQuery(name = "org.haengbokhan.model.ArticleReply@getArticleReplies(articleId)", query = "from ArticleReply as reply where article_id = :articleId and ENABLED = 1 order by ID"),
+		@NamedQuery(name = "org.haengbokhan.model.ArticleReply@getArticleReplies(articleId)", query = "from ArticleReply as reply where article_id = :articleId order by ID"),
 		@NamedQuery(name = "org.haengbokhan.model.ArticleReply@getArticleReply(articleReplyId)", query = "from ArticleReply as reply where ID = :articleReplyId") })
 public class ArticleReply extends BaseEntity {
 

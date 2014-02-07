@@ -61,7 +61,7 @@
 			<header class="wrapper">
 				<!-- <h3 id="title"><a href="main.html" th:href="@{/}" th:text="#{title.haengbokhan}">h1#title</a></h3> -->
 
-				<nav class="navbar navbar-default" role="navigation">
+				<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 					<div class="container-fluid">
 						<!-- Brand and toggle get grouped for better mobile display -->
 						<div class="navbar-header">
@@ -80,7 +80,7 @@
 							id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
 								<li class="active">
-									<a href="#">공지사항</a>
+									<a href="#" th:href="@{/article/list(groupId='notice')}">공지사항</a>
 								</li>
 								<li><a href="#" th:href="@{/gallery/gallery}">사진방</a></li>
 								<li class="dropdown">
@@ -88,7 +88,7 @@
 										data-toggle="dropdown">임원방 <b class="caret"></b>
 									</a>
 									<ul class="dropdown-menu">
-										<li><a href="#">청년 출석부</a></li>
+										<li><a href="#" th:href="@{/executive-room/roll-book}">청년 출석부</a></li>
 										<li><a href="#">임원 공유 게시판</a></li>
 										<li><a href="#">행사 및 봉사</a></li>
 										<li class="divider"></li>

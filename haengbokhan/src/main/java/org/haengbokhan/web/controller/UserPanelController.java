@@ -109,7 +109,7 @@ public class UserPanelController {
 		model.addAttribute("articleReply", new ArticleReply());
 
 		List<ArticleReply> articleReplies = articleManager
-				.getEnabledArticleReplies(article.getId());
+				.getArticleReplies(article.getId());
 
 		model.addAttribute("articleReplies", articleReplies);
 

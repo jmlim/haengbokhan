@@ -1,5 +1,6 @@
 package org.haengbokhan.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,9 @@ import javax.persistence.Table;
 		@NamedQuery(name = "org.haengbokhan.model.User@getUser():param.userId", query = "from User as user where ID = :userId"),
 		@NamedQuery(name = "org.haengbokhan.model.User@getUser():param.uId", query = "from User as user where U_ID = :uId"),
 		@NamedQuery(name = "org.haengbokhan.model.User@getUser()", query = "from User as user") })
-public class User extends BaseEntity {
+public class User extends BaseEntity implements Serializable {
+
+	private static final long serialVersionUID = 6582137205440661975L;
 
 	// uid 를 부적합한 식별자 때문에 변경하였음.
 	@Column(name = "U_ID", nullable = false)
