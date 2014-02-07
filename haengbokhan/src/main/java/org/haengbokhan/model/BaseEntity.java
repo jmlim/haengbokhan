@@ -9,6 +9,10 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/**
+ * @author Administrator
+ *
+ */
 @MappedSuperclass
 public abstract class BaseEntity {
 

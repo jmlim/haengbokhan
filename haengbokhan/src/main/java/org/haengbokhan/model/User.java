@@ -13,11 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * @author Hana Lee
- * @since 0.0.2 2013. 1. 21. 오전 7:11:00
- * @revision $LastChangedRevision: 6112 $
- * @date $LastChangedDate: 2013-02-22 23:59:39 +0900 (금, 22 2월 2013) $
- * @by $LastChangedBy: jmlim $
+ * @author Administrator
+ *
  */
 @Entity
 @Table(name = "USERS")
