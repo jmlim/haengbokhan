@@ -28,25 +28,26 @@ th:href="@{/static/styles/article.css}" />
 </head>
 <body>
 	<section layout:fragment="main-content">
-		<div class="container">
+		<div class="container article-content">
 	        <div class="row">
 	            <div class="col-lg-12">
-	                <h1 class="page-header">
-	                	<a th:text="${article.title}" th:title="${article.title}">제목</a>
-	                	<small th:text="${article.modifiedDate}">수정일</small>
-	                    <small th:text="${article.owner.uid}">이름</small>
-	                </h1>
-					<div class="article-buttons">
-						<span
-							th:if="${session.user != null and article.owner.uid == session.user.uid}">
-							<a th:href="@{/article/edit-form(articleId=${article.id},groupId=${article.groupId})}"
-							class="btn btn-info btn-mini"> 글수정 </a> 
-							<a th:href="@{/article/delete(articleId=${article.id},groupId=${article.groupId})}"
-							class="btn btn-mini btn-info"> 글삭제 </a>
-						</span> <a th:href="@{/article/list(groupId=${article.groupId})}"
-							class="btn btn-mini btn-info"> <span>목록</span>
-						</a>
-					</div>
+	                <div class="page-header">
+	                	<a th:text="${article.title}" th:title="${article.title}" class="content-title">제목</a>
+	                	<small th:text="${article.modifiedDate}" class="content-title">수정일</small>
+	                    <small th:text="${article.owner.uid}" class="content-title">이름</small>
+	                    <div class="article-buttons">
+							<span
+								th:if="${session.user != null and article.owner.uid == session.user.uid}">
+								<a th:href="@{/article/edit-form(articleId=${article.id},groupId=${article.groupId})}"
+								class="btn btn-mini btn-default"> 글수정 </a> 
+								<a th:href="@{/article/delete(articleId=${article.id},groupId=${article.groupId})}"
+								class="btn btn-mini btn-default"> 글삭제 </a>
+							</span> <a th:href="@{/article/list(groupId=${article.groupId})}"
+								class="btn btn-mini btn-default"> <span>목록</span>
+							</a>
+						</div>
+	                </div>
+					
 					<ol class="breadcrumb">
 	                    <li><a href="#" th:text="${groupId}">Home</a>
 	                    </li>
@@ -63,7 +64,6 @@ th:href="@{/static/styles/article.css}" />
 					<!--  -->
 	                 <!-- the comment box -->
 	                <div class="well">
-	                    <h4>Leave a Comment:</h4>
 	                    <form method="post" th:action="@{/article-reply/edit-form-submit}" th:object="${articleReply}" style="margin: 0">
 							<div class="reply-write" th:if="${session.user != null}">
 								<p class="clear">
@@ -85,7 +85,7 @@ th:href="@{/static/styles/article.css}" />
 								<p>
 									<input type="hidden" name="articleId" th:value="${article.id}" />
 									<input type="hidden" name="groupId" th:value="${article.groupId}"/>
-									<input type="submit" value="댓글 달기" class="btn btn-mini btn-primary" />
+									<input type="submit" value="댓글 달기" class="btn btn-mini btn-default" />
 								</p>
 							</div>
 						</form>
