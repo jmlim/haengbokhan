@@ -20,67 +20,78 @@ th:href="@{/static/styles/article.css}" />
 <body>
 	<section layout:fragment="main-content">
 		<div class="article-info">
-			<!-- <div class="search-type well article-well">
-				<div class="input-prepend">
-		            <div class="btn-group">
-			            <button class="btn" tabindex="-1">검색</button>
-			            <button class="btn dropdown-toggle" data-toggle="dropdown" tabindex="-1">
-			            	<span class="caret"></span>
-			            </button>
-			            <ul class="dropdown-menu">
-			                <li><a href="#">Action</a></li>
-			                <li><a href="#">Another action</a></li>
-			                <li><a href="#">Something else here</a></li>
-			                <li class="divider"></li>
-			                <li><a href="#">Separated link</a></li>
-			            </ul>
+			<div class="container">
+				<ol class="breadcrumb">
+                    <li><a href="#">게시판</a>
+                    </li>
+                     <li class="active" th:text="${groupId}">Blog Post</li>
+                </ol>
+				<!-- <div class="search-type well article-well">
+					<div class="input-prepend">
+			            <div class="btn-group">
+				            <button class="btn" tabindex="-1">검색</button>
+				            <button class="btn dropdown-toggle" data-toggle="dropdown" tabindex="-1">
+				            	<span class="caret"></span>
+				            </button>
+				            <ul class="dropdown-menu">
+				                <li><a href="#">Action</a></li>
+				                <li><a href="#">Another action</a></li>
+				                <li><a href="#">Something else here</a></li>
+				                <li class="divider"></li>
+				                <li><a href="#">Separated link</a></li>
+				            </ul>
+				        </div>
+				    	<input type="text"/>
 			        </div>
-			    	<input type="text"/>
-		        </div>
-			</div> -->
-			<div class="page-group">
-				<span class="new-write" th:if="${session.user != null}">
-					<a class="btn btn-small btn-info" th:href="@{/article/edit-form(groupId=${groupId})}">글쓰기</a>
-				</span>
-			</div>
-			<table class="table table-condensed table-hover table-striped table-bordered">
-				<thead>
-					<tr class="article-list-header">
-						<th style="width: 30px;">#</th>
-						<th>제목</th>
-						<th style="width: 100px;">최종 수정일</th>
-						<th style="width: 100px;">작성자</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="article : ${articles}"
-						th:unless="${#lists.isEmpty(articles)}" class="article-list">
-						<td th:text="${article.id}">0</td>
-						<td><a class="ellipsis article-list-title"
-							th:href="@{/article/content(articleId=${article.id},groupId=${groupId})}"
-							th:text="${article.title}"  th:title="${article.title}">제목</a></td>
-						<td th:text="${article.modifiedDate} ? ${article.modifiedDate} : ${article.createdDate}">2013-01-01</td>
-						<td th:text="${article.owner.uid}">아이디</td>
-					</tr>
-					<tr
-						th:if="${#lists.isEmpty(articles)}" class="article-list">
-						<td colspan="4" class="list-empty">작성된 글이 없습니다.</td>
-					</tr>
-				</tbody>
-			</table>
-			<div class="pagination page-group pagination-mini">
-				<ul>
-					<li class="disabled"><a th:if="${offset} &gt; 0"
-						th:href="@{/article/list(groupId=${groupId},offset=${offset-1})}">«</a></li>
-					<li class="disabled"
-						th:each="i: ${#numbers.sequence(startCount, pageCount)}">
-						<a class="btn"
-						th:href="@{/article/list(page=${i},groupId=${groupId},offset=${offset})}"
-						th:text="${i+1}"></a>
-					</li>
-					<li class="disabled"><a th:if="${offset} &lt; ${maxOffset}"
-						th:href="@{/article/list(groupId=${groupId},offset=${offset+1})}">»</a></li>
-				</ul>
+				</div> -->
+
+				<table class="table table-condensed table-hover table-striped table-bordered">
+					<thead>
+						<tr class="article-list-header">
+							<th style="width: 30px;">#</th>
+							<th>제목</th>
+							<th style="width: 100px;">최종 수정일</th>
+							<th style="width: 100px;">작성자</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="article : ${articles}"
+							th:unless="${#lists.isEmpty(articles)}" class="article-list">
+							<td th:text="${article.id}">0</td>
+							<td><a class="ellipsis article-list-title"
+								th:href="@{/article/content(articleId=${article.id},groupId=${groupId})}"
+								th:text="${article.title}"  th:title="${article.title}">제목</a></td>
+							<td th:text="${article.modifiedDate} ? ${article.modifiedDate} : ${article.createdDate}">2013-01-01</td>
+							<td th:text="${article.owner.uid}">아이디</td>
+						</tr>
+						<tr
+							th:if="${#lists.isEmpty(articles)}" class="article-list">
+							<td colspan="4" class="list-empty">작성된 글이 없습니다.</td>
+						</tr>
+					</tbody>
+				</table>
+				<div>
+					<ul class="pagination page-group pagination-mini">
+						<li>
+							<a th:if="${offset} &gt; 0"
+								th:href="@{/article/list(groupId=${groupId},offset=${offset-1})}">«</a>
+						</li>
+						<li
+							th:each="i: ${#numbers.sequence(startCount, pageCount)}">
+							<a class="btn"
+							th:href="@{/article/list(page=${i},groupId=${groupId},offset=${offset})}"
+							th:text="${i+1}">
+						</a>
+						</li>
+						<li><a th:if="${offset} &lt; ${maxOffset}"
+							th:href="@{/article/list(groupId=${groupId},offset=${offset+1})}">»</a>
+						</li>
+					</ul>
+				
+					<span class="new-write" style="float: right;" th:if="${session.user != null}">
+						<a class="btn btn-small btn-default" th:href="@{/article/edit-form(groupId=${groupId})}">글쓰기</a>
+					</span>
+				</div>
 			</div>
 		</div>
 	</section>

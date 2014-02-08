@@ -101,3 +101,14 @@ body {
 }
 
 /*sign in page end*/
+
+/* article-info */
+.article-info .breadcrumb {
+	margin-top: 20px;
+}
+
+.article-info .new-write {
+	margin-top: 20px;
+}
+
+/* article-info end*/
