@@ -111,4 +111,18 @@ body {
 	margin-top: 20px;
 }
 
+.article-content .article-buttons {
+	float: right;
+}
+
+.article-content a.content-title {
+	font-size: 36px;		
+}
+
+.article-content small.content-title {
+	font-size: 23px;
+	padding-left: 10px;
+	color: #999;
+}
+
 /* article-info end*/
