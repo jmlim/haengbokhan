@@ -11,11 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * @author Hana Lee
- * @since 0.0.2 2013. 1. 21. 오전 7:15:55
- * @revision $LastChangedRevision: 6070 $
- * @date $LastChangedDate: 2013-02-16 12:31:02 +0900 (토, 16 2월 2013) $
- * @by $LastChangedBy: jmlim $
+ * @author Administrator
+ * 
  */
 @Service("articleManager")
 @Transactional
