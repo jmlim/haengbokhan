@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 /**
  * @author Administrator
- *
+ * 
  */
 @Entity
 @Table(name = "USERS")
@@ -41,6 +41,9 @@ public class User extends BaseEntity implements Serializable {
 
 	@OneToMany(targetEntity = Article.class, mappedBy = "owner", cascade = CascadeType.ALL)
 	private List<Article> articles;
+
+	@OneToMany(targetEntity = Image.class, mappedBy = "owner", cascade = CascadeType.ALL)
+	private List<Image> images;
 
 	@Column(name = "PENALTY")
 	private Integer penaltyScore = 0;
