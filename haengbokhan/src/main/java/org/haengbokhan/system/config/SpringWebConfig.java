@@ -25,11 +25,8 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 /**
- * @author Hana Lee
- * @since 0.1.1 2013. 2. 2. 오후 2:09:56
- * @revision $LastChangedRevision: 6102 $
- * @date $LastChangedDate: 2013-02-21 21:03:48 +0900 (목, 21 2월 2013) $
- * @by $LastChangedBy: jmlim $
+ * @author Administrator
+ *
  */
 @Configuration
 @EnableWebMvc
