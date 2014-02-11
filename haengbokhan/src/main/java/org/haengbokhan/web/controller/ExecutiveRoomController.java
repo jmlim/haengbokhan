@@ -16,7 +16,7 @@ public class ExecutiveRoomController {
 	private Log log = LogFactory.getLog(getClass());
 
 	@RequestMapping(value = { "/executive-room/roll-book" }, method = RequestMethod.GET)
-	public String rollBookHandler() {
+	public String rollBook() {
 		return "/pages/executive-room/roll-book";
 	}
 }

@@ -28,6 +28,9 @@ public class Image extends BaseEntity {
 	@Column(name = "NAME", nullable = false)
 	private String name;
 
+	@Column(name = "REAL_NAME", nullable = false)
+	private String realName;
+
 	@Column(name = "IMAGE_SIZE", nullable = false)
 	private Long size;
 
@@ -79,6 +82,21 @@ public class Image extends BaseEntity {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	/**
+	 * @return the realName
+	 */
+	public String getRealName() {
+		return realName;
+	}
+
+	/**
+	 * @param realName
+	 *            the realName to set
+	 */
+	public void setRealName(String realName) {
+		this.realName = realName;
 	}
 
 	/**

@@ -1,0 +1,149 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="pages/commons/layout">
+<!--<![endif]-->
+<head>
+<meta http-equiv="Content-Type" content="text/html;" charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+<title th:text="#{title.tab}">사진올리기</title>
+
+<link rel="stylesheet" type="text/css" href="../../static/jquery/plugins/blueimap-file-upload/css/jquery.fileupload-ui.css"
+th:href="@{/static/jquery/plugins/blueimap-file-upload/css/jquery.fileupload-ui.css}" />
+	
+<script type="text/javascript" src="../static/jquery/plugins/blueimap-file-upload/extends/tmpl.js"
+	th:src="@{/static/jquery/plugins/blueimap-file-upload/extends/tmpl.js}"></script>
+<script type="text/javascript" src="../static/jquery/plugins/blueimap-file-upload/extends/load-image.js"
+	th:src="@{/static/jquery/plugins/blueimap-file-upload/extends/load-image.js}"></script>
+<script type="text/javascript" src="../static/jquery/plugins/blueimap-file-upload/extends/canvas-to-blob.js"
+	th:src="@{/static/jquery/plugins/blueimap-file-upload/extends/canvas-to-blob.js}"></script>
+<script type="text/javascript" src="../../static/jquery/plugins/blueimap-file-upload/js/vendor/jquery.ui.widget.js"
+	th:src="@{/static/jquery/plugins/blueimap-file-upload/js/vendor/jquery.ui.widget.js}"></script>
+<script type="text/javascript" src="../../static/jquery/plugins/blueimap-file-upload/js/jquery.iframe-transport.js"
+	th:src="@{/static/jquery/plugins/blueimap-file-upload/js/jquery.iframe-transport.js}"></script>
+<script type="text/javascript" src="../../static/jquery/plugins/blueimap-file-upload/js/jquery.fileupload.js"
+	th:src="@{/static/jquery/plugins/blueimap-file-upload/js/jquery.fileupload.js}"></script>
+
+<script type="text/javascript" src="../../static/jquery/plugins/blueimap-file-upload/js/jquery.fileupload-fp.js"
+	th:src="@{/static/jquery/plugins/blueimap-file-upload/js/jquery.fileupload-fp.js}"></script>
+<script type="text/javascript" src="../../static/jquery/plugins/blueimap-file-upload/js/jquery.fileupload-ui.js"
+	th:src="@{/static/jquery/plugins/blueimap-file-upload/js/jquery.fileupload-ui.js}"></script>
+<script type="text/javascript" src="../../static/jquery/plugins/blueimap-file-upload/js/jquery.fileupload-jui.js"
+	th:src="@{/static/jquery/plugins/blueimap-file-upload/js/jquery.fileupload-jui.js}"></script>
+
+<script type="text/javascript" th:inline="javascript">
+	/*<![CDATA[*/
+	(function($) {
+		$(document).ready(function() {
+			haengbokhan.imageUploader();
+		});
+	})(jQuery);
+	/*]]>*/
+</script>
+
+<!-- The template to display files available for upload -->
+<script id="template-upload" type="text/x-tmpl">
+	{% for (var i=0, file; file=o.files[i]; i++) { %}
+	    <tr class="template-upload">
+	        <td class="preview">
+				<span class=""></span>
+			</td>
+			<td class="name">filename : <span>{%=file.name%}</span></td>
+			<td class="size">filesize : <span>{%=o.formatFileSize(file.size)%}</span></td>
+	        {% if (file.error) { %}
+	            <td class="error" colspan="2"><span class="label label-important">Error</span> {%=file.error%}</td>
+	        {% } %}
+			<td class="start hide">{% if (!o.options.autoUpload) { %}
+                <button class="btn btn-primary">
+                    <i class="icon-upload icon-white"></i>
+                    <span>Start</span>
+                </button>
+            {% } %}</td>
+			<td class="cancel hide">{% if (!i) { %}
+            	<button class="btn btn-warning">
+                	<i class="icon-ban-circle icon-white"></i>
+                	<span>Cancel</span>
+            	</button>
+			{% } %}</td>
+	    </tr>
+	{% } %}
+</script>
+<!-- The template to display files available for download -->
+<script id="template-download" type="text/x-tmpl">
+	{% for (var i=0, file; file=o.files[i]; i++) { %}
+	    <tr class="template-download">
+	        <td class="preview">
+				<span class=""></span>
+			</td>
+			<td class="name">name : <span>{%=file.name%}</span></td>
+			<td class="size">size : <span>{%=o.formatFileSize(file.size)%}</span></td>
+	        {% if (file.error) { %}
+	            <td class="error" colspan="2"><span class="label label-important">Error</span> {%=file.error%}</td>
+	        {% } %}
+			<td class="delete">
+            	<button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}">
+	                <i class="icon-trash icon-white"></i>
+                	<span>Delete</span>
+            	</button>
+        	</td>
+	    </tr>
+	{% } %}
+</script>
+
+<style type="text/css">
+
+</style>
+</head>
+<body>
+	<section id="gallery-edit-form" layout:fragment="main-content">
+		<div id="upload-container">
+			<label>사진 등록</label>
+			<form id="fileupload" action="/image/upload" th:action="@{/image/upload}" method="POST"
+				enctype="multipart/form-data" th:object="${image}">
+				 <div class="row fileupload-buttonbar">
+            		<div class="span7">
+		                <span class="btn btn-success fileinput-button">
+		                    <i class="icon-plus icon-white"></i>
+		                    <span>Add files...</span>
+		                    <input type="file" name="file" multiple="multiple"/>
+		                </span>
+		                <button type="submit" class="btn btn-primary start">
+		                    <i class="icon-upload icon-white"></i>
+		                    <span>Start upload</span>
+		                </button>
+		                <button type="reset" class="btn btn-warning cancel">
+		                    <i class="icon-ban-circle icon-white"></i>
+		                    <span>Cancel</span>
+		                </button>
+		            </div>
+		            <div class="span5 fileupload-progress">
+		                <div class="progress progress-success progress-striped active" 
+		                	role="progressbar" aria-valuemin="0" aria-valuemax="100">
+		                    <div class="bar" style="width:0%;"></div>
+		                </div>
+		                <div class="progress-extended"></div>
+		            </div>
+		        </div>
+
+				<!-- The loading indicator is shown during file processing -->
+				<div class="fileupload-loading"></div>
+				<br/>
+				<!-- The table listing the files available for upload/download -->
+				<table role="presentation" class="table table-striped">
+					<tbody class="files" data-toggle="modal-gallery"
+						data-target="#modal-gallery"></tbody>
+				</table>
+				<!-- 		        <table role="presentation" class="table table-striped upload-table">
+		        	<tbody class="files" data-toggle="modal-gallery" 
+		        		data-target="#modal-gallery"></tbody>
+		        </table> -->
+			</form>
+		</div>
+	</section>
+</body>
+</html>
