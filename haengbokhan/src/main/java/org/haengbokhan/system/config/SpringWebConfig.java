@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.thymeleaf.spring3.SpringTemplateEngine;
 import org.thymeleaf.spring3.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
@@ -26,7 +25,7 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 /**
  * @author Administrator
- *
+ * 
  */
 @Configuration
 @EnableWebMvc
@@ -124,12 +123,13 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 
-	@Bean
-	public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
-		RequestMappingHandlerAdapter requestMappingHandlerAdapter = new RequestMappingHandlerAdapter();
-		requestMappingHandlerAdapter.setSynchronizeOnSession(true);
-		return requestMappingHandlerAdapter;
-	}
+	/*
+	 * @Bean public RequestMappingHandlerAdapter requestMappingHandlerAdapter()
+	 * { RequestMappingHandlerAdapter requestMappingHandlerAdapter = new
+	 * RequestMappingHandlerAdapter();
+	 * requestMappingHandlerAdapter.setSynchronizeOnSession(true); return
+	 * requestMappingHandlerAdapter; }
+	 */
 
 	/*
 	 * @Bean public SimpleMappingExceptionResolver
