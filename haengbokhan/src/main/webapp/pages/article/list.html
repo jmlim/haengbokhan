@@ -74,7 +74,7 @@ th:href="@{/static/styles/article.css}" />
 					<ul class="pagination page-group pagination-mini">
 						<li>
 							<a th:if="${offset} &gt; 0"
-								th:href="@{/article/list(groupId=${groupId},offset=${offset-1})}">«</a>
+								th:href="@{/article/list(groupId=${groupId},offset=${offset-1})}">&laquo;</a>
 						</li>
 						<li
 							th:each="i: ${#numbers.sequence(startCount, pageCount)}">
@@ -84,11 +84,11 @@ th:href="@{/static/styles/article.css}" />
 						</a>
 						</li>
 						<li><a th:if="${offset} &lt; ${maxOffset}"
-							th:href="@{/article/list(groupId=${groupId},offset=${offset+1})}">»</a>
+							th:href="@{/article/list(groupId=${groupId},offset=${offset+1})}">&raquo;</a>
 						</li>
 					</ul>
 				
-					<span class="new-write" style="float: right;" th:if="${session.user != null}">
+					<span class="new-write" style="float: right;" th:if="${session != null &amp;&amp; session.user != null}">
 						<a class="btn btn-small btn-default" th:href="@{/article/edit-form(groupId=${groupId})}">글쓰기</a>
 					</span>
 				</div>

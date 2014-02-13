@@ -9,7 +9,7 @@
 <!--<![endif]-->
 <body>
 	<section id="gallery-section" layout:fragment="main-content">
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col-md-offset-2 col-md-8">
 				<div class="row">
 					<a class="col-sm-4" data-title="People walking down stairs"
@@ -47,6 +47,56 @@
 						<img class="img-responsive"
 						src="//distilleryimage3.ak.instagram.com/aa7088e6048c11e3a32722000aa800c4_7.jpg"/>
 					</a>
+				</div>
+			</div>
+		</div> -->
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">
+						사진방 <small>gallery</small>
+					</h1>
+					<span class="new-write" style="float: right;" th:if="${session != null &amp;&amp; session.user != null}">
+						<a class="btn btn-small btn-default" th:href="@{/gallery/edit-form(groupId=${groupId})}">사진올리기</a>
+					</span>
+				</div>
+			</div>
+
+			<div class="row" th:each="images : ${imagesRows}">
+				<div class="col-md-3 portfolio-item" th:each="image : ${images}" th:unless="${#lists.isEmpty(images)}">
+					<a href="#" th:href="@{/gallery/content(imageId=${image.id},groupId=${groupId})}"> 
+						<img class="img-responsive" th:src="${image.url}" />
+					</a>
+				</div>
+			</div>
+
+			<hr/>
+
+			<div class="row text-center">
+				<div class="col-lg-12">
+					<ul class="pagination">
+						<li>
+							<a href="#" 
+								th:if="${offset} &gt; 0"
+								th:href="@{/gallery/gallery(groupId=${groupId},offset=${offset-1})}">&laquo;</a>
+						</li>
+<!-- 						<li class="active"><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li> -->
+						<li th:each="i: ${#numbers.sequence(startCount, pageCount)}">
+							<a
+								th:href="@{/gallery/gallery(page=${i},groupId=${groupId},offset=${offset})}"
+								th:text="${i+1}"> </a>
+						</li>
+						<li>
+							<a href="#"
+								th:if="${offset} &lt; ${maxOffset}"
+								th:href="@{/gallery/gallery(groupId=${groupId},offset=${offset+1})}">&raquo;</a>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>

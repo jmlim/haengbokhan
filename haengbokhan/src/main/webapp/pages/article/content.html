@@ -59,13 +59,11 @@ th:href="@{/static/styles/article.css}" />
 	        <div class="row">
 	            <div class="col-lg-12">
 	                <div class="article-body" th:utext="${article} ? ${article.content} : ''">작성된 글이 없습니다.</div>
-
-
 					<!--  -->
 	                 <!-- the comment box -->
 	                <div class="well">
 	                    <form method="post" th:action="@{/article-reply/edit-form-submit}" th:object="${articleReply}" style="margin: 0">
-							<div class="reply-write" th:if="${session.user != null}">
+							<div class="reply-write" th:if="${session != null $amp;$amp; session.user != null}">
 								<p class="clear">
 									<textarea id="article-reply-content" th:field="*{content}" rows="3"></textarea>
 									<script type="text/javascript">

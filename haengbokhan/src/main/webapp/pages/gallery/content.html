@@ -13,9 +13,6 @@
 
 <title th:text="#{title.tab}">게시판</title>
 
-<link rel="stylesheet" type="text/css" href="../../static/styles/article.css"
-th:href="@{/static/styles/article.css}" />
-
 <script type="text/javascript" th:inline="javascript">
 /*<![CDATA[*/
 
@@ -27,50 +24,75 @@ th:href="@{/static/styles/article.css}" />
 </style>
 </head>
 <body>
-	<section layout:fragment="main-content">
-		<div class="container article-content">
+	<section layout:fragment="main-content">	
+	    <div class="container">
 	        <div class="row">
 	            <div class="col-lg-12">
-	                <div class="page-header">
-	                	<a th:text="${article.title}" th:title="${article.title}" class="content-title">제목</a>
-	                	<small th:text="${article.modifiedDate}" class="content-title">수정일</small>
-	                    <small th:text="${article.owner.uid}" class="content-title">이름</small>
-	                    <div class="article-buttons">
-							<span
-								th:if="${session.user != null and article.owner.uid == session.user.uid}">
-								<a th:href="@{/article/edit-form(articleId=${article.id},groupId=${article.groupId})}"
-								class="btn btn-mini btn-default"> 글수정 </a> 
-								<a th:href="@{/article/delete(articleId=${article.id},groupId=${article.groupId})}"
-								class="btn btn-mini btn-default"> 글삭제 </a>
-							</span> <a th:href="@{/article/list(groupId=${article.groupId})}"
-								class="btn btn-mini btn-default"> <span>목록</span>
-							</a>
-						</div>
-	                </div>
-					
-					<ol class="breadcrumb">
-	                    <li><a href="#" th:text="${groupId}">Home</a>
-	                    </li>
-	                    <li class="active" th:text="${article.title}">Blog Post</li>
-	                </ol>
+	                <h1 class="page-header">Portfolio Item
+	                    <small>Explain Your Work</small>
+	                </h1>
 	            </div>
 	        </div>
+	        <div class="row">
+	            <div class="col-md-8">
+	                <img class="img-responsive" src="#" th:src="${image.url}"/>
+	            </div>
 	
+	            <div class="col-md-4">
+	                <h3>Project Description</h3>
+	                <p>Lorem ipsum dolor sit amet, consectetur adipiscing 
+	elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. 
+	Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris 
+	ultricies, justo eu convallis placerat, felis enim.</p>
+	                <h3>Project Details</h3>
+	                <ul>
+	                    <li>Lorem Ipsum</li>
+	                    <li>Dolor Sit Amet</li>
+	                    <li>Consectetur</li>
+	                    <li>Adipiscing Elit</li>
+	                </ul>
+	            </div>
+	        </div>
+
 	        <div class="row">
 	            <div class="col-lg-12">
-	                <div class="article-body" th:utext="${article} ? ${article.content} : ''">작성된 글이 없습니다.</div>
-
-
+	                <h3 class="page-header">Related Projects</h3>
+	            </div>
+	            <div class="col-sm-3 col-xs-6">
+	                <a href="#">
+	                    <img class="img-responsive portfolio-item" src="Single%20Portfolio%20Item%20Template%20for%20Bootstrap%203_files/500x300.gif"/>
+	                </a>
+	            </div>
+	            <div class="col-sm-3 col-xs-6">
+	                <a href="#">
+	                    <img class="img-responsive portfolio-item" src="Single%20Portfolio%20Item%20Template%20for%20Bootstrap%203_files/500x300.gif"/>
+	                </a>
+	            </div>
+	            <div class="col-sm-3 col-xs-6">
+	                <a href="#">
+	                    <img class="img-responsive portfolio-item" src="Single%20Portfolio%20Item%20Template%20for%20Bootstrap%203_files/500x300.gif"/>
+	                </a>
+	            </div>
+	            <div class="col-sm-3 col-xs-6">
+	                <a href="#">
+	                    <img class="img-responsive portfolio-item" src="Single%20Portfolio%20Item%20Template%20for%20Bootstrap%203_files/500x300.gif"/>
+	                </a>
+	            </div>
+	        </div>
+	        
+	        <div class="row">
+	            <div class="col-lg-12">
+<!-- 	                <div class="image-body" th:utext="${image} : ''">작성된 글이 없습니다.</div> -->
 					<!--  -->
 	                 <!-- the comment box -->
 	                <div class="well">
-	                    <form method="post" th:action="@{/article-reply/edit-form-submit}" th:object="${articleReply}" style="margin: 0">
-							<div class="reply-write" th:if="${session.user != null}">
+	                    <form method="post" th:action="@{/gallery-reply/edit-form-submit}" th:object="${imageReply}" style="margin: 0">
+							<div class="reply-write" th:if="${session != null &amp;&amp; session.user != null}">
 								<p class="clear">
-									<textarea id="article-reply-content" th:field="*{content}" rows="3"></textarea>
+									<textarea id="image-reply-content" th:field="*{content}" rows="3"></textarea>
 									<script type="text/javascript">
 										//<![CDATA[
-										 CKEDITOR.replace( 'article-reply-content',{
+										 CKEDITOR.replace( 'image-reply-content',{
 											 height: "60px",
 											 toolbar:
 													[
@@ -83,21 +105,21 @@ th:href="@{/static/styles/article.css}" />
 								<div th:if="${#fields.hasErrors('content')}"
 									class="text-error" th:errors="*{content}">content error</div>
 								<p>
-									<input type="hidden" name="articleId" th:value="${article.id}" />
-									<input type="hidden" name="groupId" th:value="${article.groupId}"/>
+									<input type="hidden" name="imageId" th:value="${image.id}" />
+									<input type="hidden" name="groupId" th:value="${image.groupId}"/>
 									<input type="submit" value="댓글 달기" class="btn btn-mini btn-default" />
 								</p>
 							</div>
 						</form>
 	                </div>
 
-					<div th:each="reply : ${articleReplies}">
+					<div th:each="reply : ${imageReplies}">
 						<h3>
 							<span th:text="${reply.owner.uid}">Start Bootstrap</span> 
 							<small th:text="${reply.createdDate}">9:41 PM on August 24, 2013</small>
 							<a
 								th:if="${session.user != null and reply.owner.uid == session.user.uid}"
-								th:href="@{/article-reply/delete(articleId=${article.id},articleReplyId=${reply.id},groupId=${article.groupId})}"
+								th:href="@{/image-reply/delete(imageId=${image.id},imageReplyId=${reply.id},groupId=${image.groupId})}"
 								class="icon-remove" title="삭제"></a>
 						</h3>
 						<p th:utext="${reply.content}" class="reply_content">This has to be the worst blog post I have ever read. It

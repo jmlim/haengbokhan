@@ -46,7 +46,7 @@ public class ImageManagerImpl extends AbstractJpaDaoService implements
 	@Override
 	public void createImage(Image image) {
 		image.setCreatedDate(new Date());
-		getEntityManager().merge(image);
+		getEntityManager().persist(image);
 	}
 
 	/**

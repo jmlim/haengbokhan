@@ -2,15 +2,15 @@ if (!window.haengbokhan) {
 	window.haengbokhan = {};
 }
 
-haengbokhan.imageUploader = function() {
+haengbokhan.imageUploader = function(groupId) {
 	$("#fileupload").fileupload(
 			{
-				url : '/haengbokhan/image/upload',
+				url : '/haengbokhan/image/upload?groupId='+groupId,
 				dataType : 'json',
 				type : 'POST',
 				maxFileSize : 5000000,
 				maxNumberOfFiles : 1,
-				acceptFileTypes : /(\.|\/)(gif|jpe?g|png)$/i,
+				acceptFileTypes : /(\.|\/)(g@RequestParam(value = "groupId") String groupId@RequestParam(value = "groupId") String groupIdif|jpe?g|png)$/i,
 				done : function(e, data) {
 					alert("업로드 완료");
 				},

@@ -40,7 +40,8 @@ th:href="@{/static/jquery/plugins/blueimap-file-upload/css/jquery.fileupload-ui.
 	/*<![CDATA[*/
 	(function($) {
 		$(document).ready(function() {
-			haengbokhan.imageUploader();
+			
+			haengbokhan.imageUploader([[${groupId}]]);
 		});
 	})(jQuery);
 	/*]]>*/

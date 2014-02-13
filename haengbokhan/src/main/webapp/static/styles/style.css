@@ -116,7 +116,7 @@ body {
 }
 
 .article-content a.content-title {
-	font-size: 36px;		
+	font-size: 36px;
 }
 
 .article-content small.content-title {
@@ -126,3 +126,10 @@ body {
 }
 
 /* article-info end*/
+
+/*gallery page*/
+.portfolio-item {
+	margin-bottom: 25px;
+}
+
+/*gallery page end*/
