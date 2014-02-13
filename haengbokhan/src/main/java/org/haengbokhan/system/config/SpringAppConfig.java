@@ -52,11 +52,10 @@ public class SpringAppConfig {
 	public DataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName("org.apache.derby.jdbc.ClientDriver");
-		dataSource
-				.setUrl("jdbc:derby://localhost:1527/Haengbokhan");
+		dataSource.setUrl("jdbc:derby://localhost:1527/Haengbokhan");
 		dataSource.setUsername("user");
 		dataSource.setPassword("jmlim123");
-		/*dataSource.setValidationQuery("SELECT 1");*/
+		/* dataSource.setValidationQuery("SELECT 1"); */
 		return dataSource;
 	}
 

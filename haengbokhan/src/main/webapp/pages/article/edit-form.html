@@ -24,8 +24,6 @@
 			<form id="article-edit-form" method="post" th:object="${article}" action="/article/edit-form-submit" th:action="@{/article/edit-form-submit}">
 				<div class="write-and-update well well-small article-well">
 					<p class="article">
-						<!-- <label for="title">제목</label> -->
-						<!-- <input type="text" name="title" placeholder="제목" th:value="${article} ? ${article.title} : ''"/> -->
 						<input class="input-xxlarge" id="article-title" type="text" th:maxlength="50" th:field="*{title}"
 							placeholder="제목"
 							th:class="${#fields.hasErrors('title')}? 'input-xlarge fieldError' : 'input-xlarge'" />
