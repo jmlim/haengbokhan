@@ -1,0 +1,135 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="pages/commons/layout">
+<!--<![endif]-->
+<head>
+<meta http-equiv="Content-Type" content="text/html;" charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+<title th:text="#{title.tab}">게시판</title>
+
+<script type="text/javascript" th:inline="javascript">
+/*<![CDATA[*/
+
+/*]]>*/
+</script>
+
+<style type="text/css">
+
+</style>
+</head>
+<body>
+	<section layout:fragment="main-content">	
+	    <div class="container">
+	        <div class="row">
+	            <div class="col-lg-12">
+	                <h1 class="page-header">Portfolio Item
+	                    <small>Explain Your Work</small>
+	                </h1>
+	            </div>
+	        </div>
+	        <div class="row">
+	            <div class="col-md-8">
+	                <img class="img-responsive" src="#" th:src="${imageArticle.image.url}"/>
+	            </div>
+	
+	            <div class="col-md-4">
+	                <h3>Project Description</h3>
+	                <p>Lorem ipsum dolor sit amet, consectetur adipiscing 
+	elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. 
+	Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris 
+	ultricies, justo eu convallis placerat, felis enim.</p>
+	                <h3>Project Details</h3>
+	                <ul>
+	                    <li>Lorem Ipsum</li>
+	                    <li>Dolor Sit Amet</li>
+	                    <li>Consectetur</li>
+	                    <li>Adipiscing Elit</li>
+	                </ul>
+	            </div>
+	        </div>
+
+	        <div class="row">
+	            <div class="col-lg-12">
+	                <h3 class="page-header">Related Projects</h3>
+	            </div>
+	            <div class="col-sm-3 col-xs-6">
+	                <a href="#">
+	                    <img class="img-responsive portfolio-item" src="Single%20Portfolio%20Item%20Template%20for%20Bootstrap%203_files/500x300.gif"/>
+	                </a>
+	            </div>
+	            <div class="col-sm-3 col-xs-6">
+	                <a href="#">
+	                    <img class="img-responsive portfolio-item" src="Single%20Portfolio%20Item%20Template%20for%20Bootstrap%203_files/500x300.gif"/>
+	                </a>
+	            </div>
+	            <div class="col-sm-3 col-xs-6">
+	                <a href="#">
+	                    <img class="img-responsive portfolio-item" src="Single%20Portfolio%20Item%20Template%20for%20Bootstrap%203_files/500x300.gif"/>
+	                </a>
+	            </div>
+	            <div class="col-sm-3 col-xs-6">
+	                <a href="#">
+	                    <img class="img-responsive portfolio-item" src="Single%20Portfolio%20Item%20Template%20for%20Bootstrap%203_files/500x300.gif"/>
+	                </a>
+	            </div>
+	        </div>
+	        
+	        <div class="row">
+	            <div class="col-lg-12">
+<!-- 	                <div class="image-body" th:utext="${image} : ''">작성된 글이 없습니다.</div> -->
+					<!--  -->
+	                 <!-- the comment box -->
+	                <div class="well">
+	                    <form method="post" th:action="@{/image-article-reply/edit-form-submit}" th:object="${imageArticleReply}" style="margin: 0">
+							<div class="reply-write" th:if="${session != null &amp;&amp; session.user != null}">
+								<p class="clear">
+									<textarea id="image-article-reply-content" th:field="*{content}" rows="3"></textarea>
+									<script type="text/javascript">
+										//<![CDATA[
+										 CKEDITOR.replace( 'image-article-reply-content',{
+											 height: "60px",
+											 toolbar:
+													[
+														[]
+													]
+											 } );
+										//]]>
+									</script>
+								</p>
+								<div th:if="${#fields.hasErrors('content')}"
+									class="text-error" th:errors="*{content}">content error</div>
+								<p>
+									<input type="hidden" name="imageArticleId" th:value="${imageArticle.id}" />
+									<input type="hidden" name="groupId" th:value="${imageArticle.groupId}"/>
+									<input type="submit" value="댓글 달기" class="btn btn-mini btn-default" />
+								</p>
+							</div>
+						</form>
+	                </div>
+
+					<div th:each="reply : ${imageArticleReplies}">
+						<h3>
+							<span th:text="${reply.owner.uid}">Start Bootstrap</span> 
+							<small th:text="${reply.createdDate}">9:41 PM on August 24, 2013</small>
+							<a
+								th:if="${session.user != null and reply.owner.uid == session.user.uid}"
+								th:href="@{/image-article-reply/delete(imageArticleId=${imageArticle.id},imageArticleReplyId=${reply.id},groupId=${imageArticle.groupId})}"
+								class="icon-remove" title="삭제"></a>
+						</h3>
+						<p th:utext="${reply.content}" class="reply_content">This has to be the worst blog post I have ever read. It
+							simply makes no sense. You start off by talking about space or
+							something, then you randomly start babbling about cupcakes, and
+							you end off with random fish names.</p>
+					</div>
+				</div>
+	        </div>
+	    </div>
+	</section>
+</body>
+</html>

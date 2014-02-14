@@ -5,7 +5,7 @@ if (!window.haengbokhan) {
 haengbokhan.imageUploader = function(groupId) {
 	$("#fileupload").fileupload(
 			{
-				url : '/haengbokhan/image/upload?groupId='+groupId,
+				url : '/haengbokhan/image-article/upload?groupId='+groupId,
 				dataType : 'json',
 				type : 'POST',
 				maxFileSize : 5000000,
