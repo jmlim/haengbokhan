@@ -102,48 +102,69 @@ th:href="@{/static/jquery/plugins/blueimap-file-upload/css/jquery.fileupload-ui.
 </head>
 <body>
 	<section id="gallery-edit-form" layout:fragment="main-content">
-		<div id="upload-container">
-			<label>사진 등록</label>
-			<form id="fileupload" action="/image/upload" th:action="@{/image/upload}" method="POST"
-				enctype="multipart/form-data" th:object="${image}">
-				 <div class="row fileupload-buttonbar">
-            		<div class="span7">
-		                <span class="btn btn-success fileinput-button">
-		                    <i class="icon-plus icon-white"></i>
-		                    <span>Add files...</span>
-		                    <input type="file" name="file" multiple="multiple"/>
-		                </span>
-		                <button type="submit" class="btn btn-primary start">
-		                    <i class="icon-upload icon-white"></i>
-		                    <span>Start upload</span>
-		                </button>
-		                <button type="reset" class="btn btn-warning cancel">
-		                    <i class="icon-ban-circle icon-white"></i>
-		                    <span>Cancel</span>
-		                </button>
-		            </div>
-		            <div class="span5 fileupload-progress">
-		                <div class="progress progress-success progress-striped active" 
-		                	role="progressbar" aria-valuemin="0" aria-valuemax="100">
-		                    <div class="bar" style="width:0%;"></div>
-		                </div>
-		                <div class="progress-extended"></div>
-		            </div>
-		        </div>
-
-				<!-- The loading indicator is shown during file processing -->
-				<div class="fileupload-loading"></div>
-				<br/>
-				<!-- The table listing the files available for upload/download -->
-				<table role="presentation" class="table table-striped">
-					<tbody class="files" data-toggle="modal-gallery"
-						data-target="#modal-gallery"></tbody>
-				</table>
-				<!-- 		        <table role="presentation" class="table table-striped upload-table">
-		        	<tbody class="files" data-toggle="modal-gallery" 
-		        		data-target="#modal-gallery"></tbody>
-		        </table> -->
-			</form>
+		<div id="upload-container container">
+	        <div class="row">
+	            <div class="col-lg-12">
+	                <h1 class="page-header">사진 등록
+	                </h1>
+	            </div>
+	        </div>
+	        <div class="row">
+	            <div class="col-md-6">
+	               <form id="fileupload" class="fileupload" action="/image/upload" th:action="@{/image/upload}" method="POST"
+						enctype="multipart/form-data" th:object="${image}">
+						 <div class="row fileupload-buttonbar">
+		            		<div class="span7">
+				                <span class="btn btn-success fileinput-button">
+				                    <i class="icon-plus icon-white"></i>
+				                    <span>Add files...</span>
+				                    <input type="file" name="file" multiple="multiple"/>
+				                </span>
+				                <button type="submit" class="btn btn-primary start">
+				                    <i class="icon-upload icon-white"></i>
+				                    <span>Start upload</span>
+				                </button>
+				                <button type="reset" class="btn btn-warning cancel">
+				                    <i class="icon-ban-circle icon-white"></i>
+				                    <span>Cancel</span>
+				                </button>
+				            </div>
+				        </div>
+		
+						<!-- The loading indicator is shown during file processing -->
+						<div class="fileupload-loading"></div>
+						<br/>
+						
+						<div class="progress">
+			                <div class="progress-bar" 
+			                	role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+			                	0%
+			                </div>
+				        </div>
+		
+						<!-- The table listing the files available for upload/download -->
+						<table role="presentation" class="table table-striped">
+							<tbody class="files" data-toggle="modal-gallery"
+								data-target="#modal-gallery"></tbody>
+						</table>
+					</form>
+	            </div>
+	
+	            <div class="col-md-6">
+	                <h3>Project Description</h3>
+	                <p>Lorem ipsum dolor sit amet, consectetur adipiscing 
+	elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. 
+	Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris 
+	ultricies, justo eu convallis placerat, felis enim.</p>
+	                <h3>Project Details</h3>
+	                <ul>
+	                    <li>Lorem Ipsum</li>
+	                    <li>Dolor Sit Amet</li>
+	                    <li>Consectetur</li>
+	                    <li>Adipiscing Elit</li>
+	                </ul>
+	            </div>
+	        </div>
 		</div>
 	</section>
 </body>
