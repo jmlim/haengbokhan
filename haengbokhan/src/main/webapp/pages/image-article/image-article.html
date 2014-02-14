@@ -1,0 +1,105 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="pages/commons/layout">
+<!--<![endif]-->
+<body>
+	<section id="image-article-section" layout:fragment="main-content">
+		<!-- <div class="row">
+			<div class="col-md-offset-2 col-md-8">
+				<div class="row">
+					<a class="col-sm-4" data-title="People walking down stairs"
+						data-gallery="multiimages" data-toggle="lightbox"
+						href="http://distilleryimage6.ak.instagram.com/ba70b8e8030011e3a31b22000a1fbb63_7.jpg">
+						<img class="img-responsive"
+						src="//distilleryimage6.ak.instagram.com/ba70b8e8030011e3a31b22000a1fbb63_7.jpg"/>
+					</a> <a class="col-sm-4" data-title="Man getting wet"
+						data-gallery="multiimages" data-toggle="lightbox"
+						href="http://distilleryimage3.ak.instagram.com/f0c3343c046511e393b222000aa8011b_7.jpg">
+						<img class="img-responsive"
+						src="//distilleryimage3.ak.instagram.com/f0c3343c046511e393b222000aa8011b_7.jpg"/>
+					</a> <a class="col-sm-4" data-title="Someone lost their dress"
+						data-gallery="multiimages" data-toggle="lightbox"
+						href="http://distilleryimage5.ak.instagram.com/59e9419c05d111e3896922000a1fbe1a_7.jpg">
+						<img class="img-responsive"
+						src="//distilleryimage5.ak.instagram.com/59e9419c05d111e3896922000a1fbe1a_7.jpg"/>
+					</a>
+				</div>
+				<div class="row">
+					<a class="col-sm-4"
+						data-footer="Big ass waterfall- using footer instead of title"
+						data-gallery="multiimages" data-toggle="lightbox"
+						href="http://distilleryimage2.ak.instagram.com/e3493b0a045411e3a4fb22000a1f97ec_7.jpg">
+						<img class="img-responsive"
+						src="//distilleryimage2.ak.instagram.com/e3493b0a045411e3a4fb22000a1f97ec_7.jpg"/>
+					</a> <a class="col-sm-4" data-footer="Now fill it with whiskey"
+						data-title="Cool bottle" data-gallery="multiimages"
+						data-toggle="lightbox"
+						href="http://distilleryimage10.ak.instagram.com/85c5d0e4039411e3bd9b22000aa82186_7.jpg">
+						<img class="img-responsive"
+						src="//distilleryimage10.ak.instagram.com/85c5d0e4039411e3bd9b22000aa82186_7.jpg"/>
+					</a> <a class="col-sm-4" data-toggle="lightbox"
+						href="http://distilleryimage3.ak.instagram.com/aa7088e6048c11e3a32722000aa800c4_7.jpg">
+						<img class="img-responsive"
+						src="//distilleryimage3.ak.instagram.com/aa7088e6048c11e3a32722000aa800c4_7.jpg"/>
+					</a>
+				</div>
+			</div>
+		</div> -->
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">
+						사진방 <small>image-article</small>
+					</h1>
+					<span class="new-write" style="float: right;" th:if="${session != null &amp;&amp; session.user != null}">
+						<a class="btn btn-small btn-default" th:href="@{/image-article/edit-form(groupId=${groupId})}">사진올리기</a>
+					</span>
+				</div>
+			</div>
+
+			<div class="row" th:each="imageArticles : ${imageArticlesRows}">
+				<div class="col-md-3 portfolio-item" th:each="imageArticle : ${imageArticles}" th:unless="${#lists.isEmpty(imageArticles)}">
+					<a href="#" th:href="@{/image-article/content(imageArticleId=${imageArticle.id},groupId=${groupId})}"> 
+						<img class="img-responsive" th:src="${imageArticle.image.url}" />
+					</a>
+				</div>
+			</div>
+
+			<hr/>
+
+			<div class="row text-center">
+				<div class="col-lg-12">
+					<ul class="pagination">
+						<li>
+							<a href="#" 
+								th:if="${offset} &gt; 0"
+								th:href="@{/image-article/image-article(groupId=${groupId},offset=${offset-1})}">&laquo;</a>
+						</li>
+<!-- 						<li class="active"><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li> -->
+						<li th:each="i: ${#numbers.sequence(startCount, pageCount)}">
+							<a
+								th:href="@{/image-article/image-article(page=${i},groupId=${groupId},offset=${offset})}"
+								th:text="${i+1}"> </a>
+						</li>
+						<li>
+							<a href="#"
+								th:if="${offset} &lt; ${maxOffset}"
+								th:href="@{/image-article/image-article(groupId=${groupId},offset=${offset+1})}">&raquo;</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
