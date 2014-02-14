@@ -270,7 +270,7 @@ public class GalleryController {
 
 		status.setComplete();
 
-		return "redirect:/image/content?imageId=" + imageId + "&groupId="
+		return "redirect:/gallery/content?imageId=" + imageId + "&groupId="
 				+ groupId;
 	}
 
@@ -294,7 +294,7 @@ public class GalleryController {
 
 		imageManager.deleteImageReply(reply);
 
-		return "redirect:/image/content?imageId=" + imageId + "&groupId="
+		return "redirect:/gallery/content?imageId=" + imageId + "&groupId="
 				+ groupId;
 	}
 

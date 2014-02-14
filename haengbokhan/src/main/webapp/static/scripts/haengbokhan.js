@@ -9,13 +9,18 @@ haengbokhan.imageUploader = function(groupId) {
 				dataType : 'json',
 				type : 'POST',
 				maxFileSize : 5000000,
-				maxNumberOfFiles : 1,
+				maxNumberOfFiles : 20,
 				acceptFileTypes : /(\.|\/)(g@RequestParam(value = "groupId") String groupId@RequestParam(value = "groupId") String groupIdif|jpe?g|png)$/i,
+				progressall: function(e, data) {
+					var progress = parseInt(data.loaded / data.total
+							* 100, 10);
+					$(".progress .progress-bar").css("width",
+							progress + "%").text(progress + "%");
+				},
 				done : function(e, data) {
-					alert("업로드 완료");
+					//alert("업로드 완료");
 				},
 				stop : function(e) {
-					console.log(e);
 					var that = $(this).data('blueimp-fileupload')
 							|| $(this).data('fileupload'), deferred = that
 							._addFinishedDeferreds();
@@ -29,7 +34,6 @@ haengbokhan.imageUploader = function(groupId) {
 							});
 				},
 				destroy : function(e, data) {
-					alert(123);
 					var that = $(this).data('blueimp-fileupload')
 							|| $(this).data('fileupload');
 					if (data.url) {
