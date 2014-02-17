@@ -59,7 +59,7 @@ public class ImageArticleController {
 
 	@Autowired
 	private ImageArticleManager imageArticleManager;
-	
+
 	@Autowired
 	private ImageManager imageManager;
 
@@ -75,7 +75,7 @@ public class ImageArticleController {
 	 * @return
 	 */
 	@RequestMapping(value = { "/image-article/image-article" }, method = RequestMethod.GET)
-	public String gallery(
+	public String imageArticle(
 			Model model,
 			@RequestParam(value = "page", defaultValue = "0") int page,
 			@RequestParam(value = "offset", defaultValue = "0") int offset,
@@ -156,7 +156,7 @@ public class ImageArticleController {
 	 * @throws UserNotFoundException
 	 */
 	@RequestMapping(value = "/image-article/edit-form", method = RequestMethod.GET)
-	public String galleryEditForm(
+	public String imageArticleEditForm(
 			Model model,
 			HttpSession session,
 			@RequestParam(value = "imageArticleId", required = false) Integer imageArticleId,
@@ -211,7 +211,7 @@ public class ImageArticleController {
 	 * @throws UserNotFoundException
 	 */
 	@RequestMapping(value = "/image-article/edit-form-submit", method = RequestMethod.POST)
-	public String galleryEditSubmit(Model model,
+	public String imageArticleEditSubmit(Model model,
 			@ModelAttribute ImageArticle imageArticle, HttpSession session,
 			SessionStatus status, BindingResult result,
 			@RequestParam(value = "groupId") String groupId)
@@ -250,7 +250,7 @@ public class ImageArticleController {
 	}
 
 	@RequestMapping(value = "/image-article-reply/edit-form-submit", method = RequestMethod.POST)
-	public String galleryReplyEditSubmit(
+	public String imageArticleReplyEditSubmit(
 			Model model,
 			HttpSession session,
 			@ModelAttribute("imageArticleReply") ImageArticleReply reply,
@@ -366,7 +366,9 @@ public class ImageArticleController {
 	 */
 	@RequestMapping(value = "/image-article/upload", method = RequestMethod.POST, produces = "application/json")
 	public @ResponseBody
-	Object uploadHandler(Model model, @RequestParam("file") MultipartFile file,
+	Object uploadHandler(Model model,
+			@ModelAttribute ImageArticle imageArticle,
+			@RequestParam("file") MultipartFile file,
 			@RequestParam(value = "groupId") String groupId,
 			HttpSession httpSession, HttpServletResponse response)
 			throws IllegalStateException, IOException {
@@ -376,30 +378,34 @@ public class ImageArticleController {
 
 		file.transferTo(new File(fileStorePath + storeFileName));
 
-		ImageArticle imageArticle = new ImageArticle();
+		ImageArticle createdImageArticle = new ImageArticle();
+
 		Image image = new Image();
 		image.setRealName(originalFilename);
 		image.setName(storeFileName);
 		image.setSize(file.getSize());
 		image.setPath(fileStorePath);
 		image.setContentType(file.getContentType());
-		imageArticle.setGroupId(groupId);
+		createdImageArticle.setGroupId(groupId);
+		createdImageArticle.setTitle(imageArticle.getTitle());
+		createdImageArticle.setContent(imageArticle.getContent());
 
 		response.setContentType("application/json");
 
 		User owner = (User) httpSession.getAttribute("user");
-		imageArticle.setOwner(owner);
+		createdImageArticle.setOwner(owner);
 		image.setOwner(owner);
 		imageManager.createImage(image);
-		imageArticle.setImage(image);
-		imageArticleManager.createImageArticle(imageArticle);
+		createdImageArticle.setImage(image);
 
-		image.setUrl(getImageArticleUrl(imageArticle));
+		imageArticleManager.createImageArticle(createdImageArticle);
+
+		image.setUrl(getImageArticleUrl(createdImageArticle));
 		imageManager.updateImage(image);
-		imageArticleManager.updateImageArticle(imageArticle);
+		imageArticleManager.updateImageArticle(createdImageArticle);
 
-		model.addAttribute("imageArticle", imageArticle);
-		httpSession.setAttribute("imageArticle", imageArticle);
+		model.addAttribute("imageArticle", createdImageArticle);
+		httpSession.setAttribute("imageArticle", createdImageArticle);
 		model.addAttribute("image", image);
 
 		List<Map<String, Object>> files = new ArrayList<Map<String, Object>>();
