@@ -44,7 +44,7 @@
 		                <small th:text="${imageArticle.modifiedDate}" class="content-title">수정일</small>
 	                    <small th:text="${imageArticle.owner.uid}" class="content-title">이름</small>
                     </h3>
-	                <p> 
+	                <p>
 	                	<div class="image-article-body" th:utext="${imageArticle} ? ${imageArticle.content} : ''">작성된 글이 없습니다.</div>
 	                </p>
                     <div class="image-article-buttons">
