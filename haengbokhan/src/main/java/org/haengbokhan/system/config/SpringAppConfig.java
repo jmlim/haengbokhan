@@ -36,7 +36,8 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 		@ComponentScan.Filter(Configuration.class),
 		@ComponentScan.Filter(Controller.class) })
 @EnableTransactionManagement
-@ImportResource(value = { "classpath*:haengbokhan-security-context.xml" })
+@ImportResource(value = { "classpath*:haengbokhan-security-context.xml",
+		"classpath*:haengbokhan-context.xml" })
 public class SpringAppConfig {
 
 	/*

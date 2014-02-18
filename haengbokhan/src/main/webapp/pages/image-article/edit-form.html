@@ -163,7 +163,7 @@ th:href="@{/static/jquery/plugins/blueimap-file-upload/css/jquery.fileupload-ui.
 						<textarea id="image-article-content" th:field="*{content}" rows="10" cols="50" th:class="${#fields.hasErrors('title')}? 'fieldError'">content</textarea>
 						<script type="text/javascript" th:inline="javascript">
 							//<![CDATA[
-							 var contentEditor = CKEDITOR.replace( 'image-article-content',{
+							/*  var contentEditor = CKEDITOR.replace( 'image-article-content',{
 								 forceSimpleAmpersand: true,
 								 forcePasteAsPlainText: true,
 								 height: "140px"
@@ -172,7 +172,7 @@ th:href="@{/static/jquery/plugins/blueimap-file-upload/css/jquery.fileupload-ui.
 							 CKEDITOR.add(contentEditor);
 							 window.setTimeout(function() {
 								 CKEDITOR.instances['image-article-content'].setData([[*{content}]]);
-							 },500);
+							 },500); */
 							 /*
 							  pbckcode: {
 										    'cls'         : 'prettyprint linenums', // the class(es) added to the pre tag, useful if you use a syntax highlighter (here it is Google Prettify)
