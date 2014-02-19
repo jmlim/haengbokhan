@@ -17,11 +17,8 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
 
 /**
- * @author Hana Lee
- * @since 0.2.0 2013. 2. 8. 오전 1:38:42
- * @revision $LastChangedRevision: 6037 $
- * @date $LastChangedDate: 2013-02-15 02:55:21 +0900 (금, 15 2월 2013) $
- * @by $LastChangedBy: voyaging $
+ * @author Administrator
+ * 
  */
 public class WebIntializer implements WebApplicationInitializer {
 
@@ -59,7 +56,8 @@ public class WebIntializer implements WebApplicationInitializer {
 		AnnotationConfigWebApplicationContext dispatcherContext = new AnnotationConfigWebApplicationContext();
 		dispatcherContext.register(SpringWebConfig.class);
 		ServletRegistration.Dynamic dispatcher = servletContext.addServlet(
-				"haengbokhanDispatcher", new DispatcherServlet(dispatcherContext));
+				"haengbokhanDispatcher", new DispatcherServlet(
+						dispatcherContext));
 		dispatcher.setLoadOnStartup(1);
 		dispatcher.addMapping("/");
 	}
