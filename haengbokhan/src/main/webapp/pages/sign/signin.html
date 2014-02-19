@@ -17,7 +17,7 @@
 				<form action="/j_spring_security_check"
 					th:action="@{/j_spring_security_check}" method="post"
 					class="form-signin" role="form" th:object="${user}">
-					<h2 class="form-signin-heading">Please sign in</h2>
+					<h2 class="form-signin-heading">로그인 해주세요</h2>
 
 					<input id="j_username" name="j_username" class="form-control"
 						placeholder="Your signin id..." required="required"
@@ -30,7 +30,7 @@
 						<input value="remember-me" type="checkbox"> Remember me</input>
 					</label>
 					<button class="btn btn-lg btn-primary btn-block" type="submit"
-						value="Authenticate" th:value="#{label.signin.authentication}">Sign in</button>
+						value="Authenticate" th:value="#{label.signin.authentication}">로그인</button>
 				</form>
 			</div>
 		</article>

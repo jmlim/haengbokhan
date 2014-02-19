@@ -79,7 +79,7 @@
 						<li>
 							<a href="#" 
 								th:if="${offset} &gt; 0"
-								th:href="@{/image-article/image-article(groupId=${groupId},offset=${offset-1})}">&laquo;</a>
+								th:href="@{/image-article/list(groupId=${groupId},offset=${offset-1})}">&laquo;</a>
 						</li>
 <!-- 						<li class="active"><a href="#">1</a></li>
 						<li><a href="#">2</a></li>
@@ -88,13 +88,13 @@
 						<li><a href="#">5</a></li> -->
 						<li th:each="i: ${#numbers.sequence(startCount, pageCount)}">
 							<a
-								th:href="@{/image-article/image-article(page=${i},groupId=${groupId},offset=${offset})}"
+								th:href="@{/image-article/list(page=${i},groupId=${groupId},offset=${offset})}"
 								th:text="${i+1}"> </a>
 						</li>
 						<li>
 							<a href="#"
 								th:if="${offset} &lt; ${maxOffset}"
-								th:href="@{/image-article/image-article(groupId=${groupId},offset=${offset+1})}">&raquo;</a>
+								th:href="@{/image-article/list(groupId=${groupId},offset=${offset+1})}">&raquo;</a>
 						</li>
 					</ul>
 				</div>
