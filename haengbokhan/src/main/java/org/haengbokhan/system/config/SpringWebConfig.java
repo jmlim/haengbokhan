@@ -3,7 +3,7 @@ package org.haengbokhan.system.config;
 import java.util.ArrayList;
 import java.util.List;
 
-import nz.net.ultraq.web.thymeleaf.LayoutDialect;
+import nz.net.ultraq.thymeleaf.LayoutDialect;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring3.SpringTemplateEngine;
 import org.thymeleaf.spring3.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
@@ -110,6 +111,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		engine.setTemplateResolver(templateResolver());
 		engine.setMessageSource(messageSource());
 		engine.addDialect(new LayoutDialect());
+		engine.addDialect(new SpringSecurityDialect());
 
 		return engine;
 	}

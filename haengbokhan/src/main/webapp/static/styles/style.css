@@ -1,3 +1,10 @@
+/* 기본 스타일 */
+body,td,th,input,select,textarea,.dr-pnl-h,.dr-menu-label,.rich-label-text-decor,.sub-menu span,.sub-menu a,.bottom-menu span,.bottom-menu a
+	{
+	font-family: "맑은 고딕", Gulim, UnDotum, "돋움", dotum, Verdana, Arial,
+		Helvetica, sans-serif;
+}
+
 /*commons */
 .carousel-inner .active .fill,.item,.carousel-inner {
 	min-height: 600px;

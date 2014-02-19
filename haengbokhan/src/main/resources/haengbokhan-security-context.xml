@@ -78,6 +78,8 @@
 		</property>
 	</bean>
 
+	<bean 
+		class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
 	<bean id="authenticatedVoter"
 		class="org.springframework.security.access.vote.AuthenticatedVoter" />
 

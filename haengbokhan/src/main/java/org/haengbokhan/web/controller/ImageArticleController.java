@@ -74,8 +74,8 @@ public class ImageArticleController {
 	 * @param groupId
 	 * @return
 	 */
-	@RequestMapping(value = { "/image-article/image-article" }, method = RequestMethod.GET)
-	public String imageArticle(
+	@RequestMapping(value = { "/image-article/list" }, method = RequestMethod.GET)
+	public String imageArticles(
 			Model model,
 			@RequestParam(value = "page", defaultValue = "0") int page,
 			@RequestParam(value = "offset", defaultValue = "0") int offset,
@@ -144,7 +144,7 @@ public class ImageArticleController {
 		model.addAttribute("imageArticlesRows", imageArticlesRows);
 		model.addAttribute("groupId", groupId);
 
-		return "/pages/image-article/image-article";
+		return "/pages/image-article/list";
 	}
 
 	/**
@@ -240,7 +240,7 @@ public class ImageArticleController {
 		if (imageArticle.getId() == null) {
 			imageArticleManager.createImageArticle(imageArticle);
 			status.setComplete();
-			return "redirect:/image-article/image-article?groupId=" + groupId;
+			return "redirect:/image-article/list?groupId=" + groupId;
 		} else {
 			imageArticleManager.updateImageArticle(imageArticle);
 			status.setComplete();

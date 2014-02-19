@@ -92,7 +92,7 @@
 <!-- 	                <div class="image-body" th:utext="${image} : ''">작성된 글이 없습니다.</div> -->
 					<!--  -->
 	                 <!-- the comment box -->
-	                <div class="well">
+	                <div class="well" sec:authorize="hasRole('ROLE_USER')">
 	                    <form method="post" th:action="@{/image-article-reply/edit-form-submit}" th:object="${imageArticleReply}" style="margin: 0">
 							<div class="reply-write" th:if="${session != null &amp;&amp; session.user != null}">
 								<p class="clear">
