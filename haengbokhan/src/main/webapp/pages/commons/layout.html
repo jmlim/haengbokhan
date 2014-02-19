@@ -100,12 +100,13 @@
 										<li><a href="#">파일방</a></li>
 									</ul>
 								</li>
+								<li><a href="#" th:href="@{/admin/admin}">관리자</a></li>
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
-								<li th:if="${session == null || session.user == null}"><a href="#" th:href="@{/login}">로그인</a></li>
+								<li th:if="${session == null || session.user == null}"><a href="#" th:href="@{/sign/signin}">로그인</a></li>
 								<li th:if="${session != null &amp;&amp; session.user != null}"><a href="/j_spring_security_logout" th:href="@{/j_spring_security_logout}"
 									th:text="#{label.menu.head.logout}">로그아웃</a></li>
-								<li><a href="#" th:href="@{/signup}">등록</a></li>
+								<li><a href="#" th:href="@{/sign/signup}">등록</a></li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle"
 									data-toggle="dropdown">회원메뉴 <b class="caret"></b></a>
 									<ul class="dropdown-menu">

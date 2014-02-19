@@ -7,23 +7,18 @@ import org.haengbokhan.model.User;
 import org.haengbokhan.service.AbstractJpaDaoService;
 import org.haengbokhan.service.UserManager;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 /**
- * @author Hana Lee
- * @since 0.0.2 2013. 1. 21. 오전 7:16:00
- * @revision $LastChangedRevision: 6070 $
- * @date $LastChangedDate: 2013-02-16 12:31:02 +0900 (토, 16 2월 2013) $
- * @by $LastChangedBy: jmlim $
+ * @author Administrator
+ * 
  */
 @Service("userManager")
 @Transactional
 public class UserManagerImpl extends AbstractJpaDaoService implements
-		UserManager, UserDetailsService {
+		UserManager {
 
 	/**
 	 * @see org.haengbokhan.service.UserManager#getUser(java.lang.Integer)
@@ -64,8 +59,9 @@ public class UserManagerImpl extends AbstractJpaDaoService implements
 	 */
 	public void createUser(User user) {
 		user.setCreatedDate(new Date());
-		if (user.getRole() == null) {
-			user.setRole("ROLE_USER");
+		List<String> userRoles = user.getRoles();
+		if (user.getRoles().isEmpty()) {
+			userRoles.add("ROLE_USER");
 		}
 		getEntityManager().persist(user);
 	}
@@ -98,14 +94,6 @@ public class UserManagerImpl extends AbstractJpaDaoService implements
 			return results;
 		}
 
-		return null;
-	}
-
-	/**
-	 * @see org.springframework.security.core.userdetails.UserDetailsService#loadUserByUsername(java.lang.String)
-	 */
-	public UserDetails loadUserByUsername(String username)
-			throws UsernameNotFoundException {
 		return null;
 	}
 }

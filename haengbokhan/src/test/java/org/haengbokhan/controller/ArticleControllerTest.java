@@ -47,7 +47,7 @@ public class ArticleControllerTest {
 		user.setUid("guest");
 		user.setName("게스트");
 		user.setEmail("voyaging@eyeq.co.kr");
-		user.setRole("ROLE_ADMIN,ROLE_USER");
+	//'	user.setRole("ROLE_ADMIN,ROLE_USER");
 		Article article = new Article();
 		this.mockMvc
 				.perform(
@@ -66,7 +66,7 @@ public class ArticleControllerTest {
 		user.setUid("guest");
 		user.setName("게스트");
 		user.setEmail("voyaging@eyeq.co.kr");
-		user.setRole("ROLE_ADMIN,ROLE_USER");
+	//	user.setRole("ROLE_ADMIN,ROLE_USER");
 
 		Article article = new Article();
 		article.setTitle("정묵테스트");
