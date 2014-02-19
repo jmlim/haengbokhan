@@ -20,12 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 /**
- * @author Hana Lee
- * @since 0.0.2 2013. 1. 21. 오전 7:16:33
- * @revision $LastChangedRevision: 6035 $
- * @date $LastChangedDate: 2013-02-15 02:52:03 +0900 (금, 15 2월 2013) $
- * @by $LastChangedBy: voyaging $
+ * @author Administrator
+ *
  */
 @Controller
 public class UserPanelController {

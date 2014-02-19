@@ -10,16 +10,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
+
 /**
- * @author Hana Lee
- * @since 0.2.1 2013. 2. 8. 오전 3:19:09
- * @revision $LastChangedRevision$
- * @date $LastChangedDate$
- * @by $LastChangedBy$
+ * @author Administrator
+ *
  */
 @Controller
 public class ScheduleController {
 
+	/**
+	 * @param model
+	 * @param httpSession
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
 	@RequestMapping(value = "/schedule")
 	public String schedulePageHandler(Model model, HttpSession httpSession)
 			throws UnsupportedEncodingException {

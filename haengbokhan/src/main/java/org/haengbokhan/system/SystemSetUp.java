@@ -11,11 +11,8 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 /**
- * @author Hana Lee
- * @since 0.1.1 2013. 2. 2. 오후 3:20:29
- * @revision $LastChangedRevision: 5978 $
- * @date $LastChangedDate: 2013-02-08 04:21:44 +0900 (금, 08 2월 2013) $
- * @by $LastChangedBy: voyaging $
+ * @author Administrator
+ *
  */
 @Service(value = "systemSetUp")
 @Order(value = 0)

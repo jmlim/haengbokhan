@@ -25,11 +25,8 @@ import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 /**
- * @author Hana Lee
- * @since 0.1.1 2013. 2. 2. 오후 1:06:46
- * @revision $LastChangedRevision: 6047 $
- * @date $LastChangedDate: 2013-02-15 14:18:13 +0900 (금, 15 2월 2013) $
- * @by $LastChangedBy: samkwang.na $
+ * @author Administrator
+ * 
  */
 @Configuration
 @ComponentScan(basePackages = "org.haengbokhan", excludeFilters = {
@@ -49,6 +46,9 @@ public class SpringAppConfig {
 	 * dataSource.setValidationQuery("SELECT 1 FROM DUAL"); return dataSource; }
 	 */
 
+	/**
+	 * @return
+	 */
 	@Bean(name = "dataSource", destroyMethod = "close")
 	public DataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();

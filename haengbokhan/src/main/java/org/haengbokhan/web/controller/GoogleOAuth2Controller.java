@@ -9,12 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+
 /**
- * @author Hana Lee
- * @since 0.1.1 2013. 2. 5. 오전 3:25:35
- * @revision $LastChangedRevision: 5940 $
- * @date $LastChangedDate: 2013-02-05 07:15:54 +0900 (화, 05 2월 2013) $
- * @by $LastChangedBy: voyaging $
+ * @author Administrator
+ *
  */
 @Controller
 @SessionAttributes(value = { "oAuthState", "access_token" }, types = {
