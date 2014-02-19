@@ -8,6 +8,7 @@ import org.haengbokhan.service.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -32,26 +33,34 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 		try {
 			User user = userManager.getUser(userName);
-			return new UserPrincipal(user, getAuthorities());
+			return new UserPrincipal(user, getAuthorities(user));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public List<GrantedAuthority> getAuthorities() {
-		List<GrantedAuthority> authList = getGrantedAuthorities();
-		return authList;
+	/**
+	 * @param user
+	 * @return
+	 */
+	public List<GrantedAuthority> getAuthorities(User user) {
+		if (user != null && user.getRoles() != null) {
+			List<GrantedAuthority> authList = getGrantedAuthorities(user
+					.getRoles());
+			return authList;
+		}
+		return null;
 	}
 
-	public List<String> getRoles() {
-		List<String> roles = new ArrayList<String>();
-		roles.add("ROLE_USER");
-		roles.add("ROLE_ADMIN");
-		return roles;
-	}
-
-	public List<GrantedAuthority> getGrantedAuthorities() {
+	/**
+	 * @param roles
+	 * @return
+	 */
+	public List<GrantedAuthority> getGrantedAuthorities(List<String> roles) {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		for (String role : roles) {
+			authorities.add(new SimpleGrantedAuthority(role));
+		}
 		return authorities;
 	}
 

@@ -5,8 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -48,8 +52,10 @@ public class User extends BaseEntity implements Serializable {
 	@Column(name = "PENALTY")
 	private Integer penaltyScore = 0;
 
-	@Column(name = "ROLE")
-	private String role;
+	@Column(name = "ROLES")
+	@ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
+	@CollectionTable(joinColumns = { @JoinColumn(name = "user_id") })
+	private List<String> roles;
 
 	public User() {
 	}
@@ -166,18 +172,21 @@ public class User extends BaseEntity implements Serializable {
 	}
 
 	/**
-	 * @return the role
+	 * @return the roles
 	 */
-	public String getRole() {
-		return role;
+	public List<String> getRoles() {
+		return roles;
 	}
 
 	/**
-	 * @param role
-	 *            the role to set
+	 * @param roles
+	 *            the roles to set
 	 */
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoles(List<String> roles) {
+		if (this.roles == null) {
+			this.roles = new ArrayList<String>();
+		}
+		this.roles = roles;
 	}
 
 	/**
@@ -187,7 +196,7 @@ public class User extends BaseEntity implements Serializable {
 	public String toString() {
 		return "User information (id : " + this.getId() + ", uid : "
 				+ this.getUid() + ", name : " + this.getName() + ", email : "
-				+ this.getEmail() + ")";
+				+ this.getEmail() + ", roles : " + this.getRoles() + ")";
 	}
 
 }

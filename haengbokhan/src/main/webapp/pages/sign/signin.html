@@ -11,7 +11,7 @@
 
 </head>
 <body>
-	<section id="login-section" layout:fragment="main-content">
+	<section id="signin-section" layout:fragment="main-content">
 		<article>
 			<div class="signin">
 				<form action="/j_spring_security_check"
@@ -20,7 +20,7 @@
 					<h2 class="form-signin-heading">Please sign in</h2>
 
 					<input id="j_username" name="j_username" class="form-control"
-						placeholder="Your login id..." required="required"
+						placeholder="Your signin id..." required="required"
 						autofocus="autofocus" type="text" /> 
 					
 					<input id="j_password"
@@ -30,7 +30,7 @@
 						<input value="remember-me" type="checkbox"> Remember me</input>
 					</label>
 					<button class="btn btn-lg btn-primary btn-block" type="submit"
-						value="Authenticate" th:value="#{label.login.authentication}">Sign in</button>
+						value="Authenticate" th:value="#{label.signin.authentication}">Sign in</button>
 				</form>
 			</div>
 		</article>
