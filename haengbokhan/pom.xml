@@ -21,14 +21,16 @@
 		<c.io.version>2.4</c.io.version>
 		<h.entitymanager.version>3.6.10.Final</h.entitymanager.version>
 		<c3p0.version>0.9.1.2</c3p0.version>
-		<thymeleaf.version>2.0.15</thymeleaf.version>
+		<thymeleaf.version>2.1.2.RELEASE</thymeleaf.version>
+		<thymeleaf.extras.springsecurity3.version>2.1.1.RELEASE</thymeleaf.extras.springsecurity3.version>
 		<cglib.version>2.2.2</cglib.version>
 		<hsqldb.version>2.2.9</hsqldb.version>
 		<ojdbc.version>10.2.0.4.0</ojdbc.version>
 		<derbyclient.version>10.10.1.1</derbyclient.version>
 		<slf4j.version>1.7.2</slf4j.version>
+		<jackson.core.version>1.9.11</jackson.core.version>
 		<jackson.mapper.version>1.9.11</jackson.mapper.version>
-		<thymeleaf.layout.version>1.0.5</thymeleaf.layout.version>
+		<thymeleaf.layout.version>1.2.2</thymeleaf.layout.version>
 		<servlet.version>3.0.1</servlet.version>
 		<httpunit.version>1.7</httpunit.version>
 		<!-- Plugins version defined -->
@@ -162,6 +164,11 @@
 			<artifactId>thymeleaf-spring3</artifactId>
 			<version>${thymeleaf.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity3</artifactId>
+			<version>${thymeleaf.extras.springsecurity3.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -206,6 +213,12 @@
 
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>${jackson.core.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>${jackson.mapper.version}</version>
 		</dependency>
@@ -236,7 +249,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>nz.net.ultraq.web.thymeleaf</groupId>
+			<groupId>nz.net.ultraq.thymeleaf</groupId>
 			<artifactId>thymeleaf-layout-dialect</artifactId>
 			<version>${thymeleaf.layout.version}</version>
 		</dependency>
